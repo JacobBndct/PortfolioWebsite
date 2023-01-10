@@ -1,0 +1,54 @@
+Showcase broad range of skills that might be useful to Technical art
+
+- many sections 
+- MERN webstack
+
+Database username: Togposh
+Database password: FBU8fPJFigitmw4c
+
+Sections
+- About me
+	-About me
+	-Goals
+	-Rotating carousel of things I've made
+	-Strong call to action
+- Art
+	-
+- GameJams / Games
+- Shaders
+- 3D rigging
+- Technal art goodies
+
+App will be used by:
+- Technical artists
+- HR hiring
+- Artists
+- Programmers
+
+Things that can be displayed immediately:
+- GameJam game(s)
+- LinkedIn link
+- Github link
+- Work experience
+- Art
+- Current projects(?)
+
+Application will store 
+
+input name string
+input description string
+select date
+
+select type of media
+select preview image
+featured checkmark
+
+
+	- Media
+		- Name
+		- Description
+		- Date of creation
+		- Type of media
+		- Featuered
+		- Media preview image Url
+		- Media Url
