@@ -3,6 +3,11 @@ Showcase broad range of skills that might be useful to Technical art
 - many sections 
 - MERN webstack
 
+Three ways to store images for website
+	- database as binary data
+	- file system like Amazon S3
+	- CDN (content delivery network)
+
 Database username: Togposh
 Database password: FBU8fPJFigitmw4c
 
@@ -29,11 +34,25 @@ Things that can be displayed immediately:
 - GameJam game(s)
 - LinkedIn link
 - Github link
-- Work experience
+- Work experience (?)
 - Art
-- Current projects(?)
+- Current projects
 
-Application will store 
+Application will store ---------------------------------------
+	- Preview
+		- Route to media page
+		- URL to preview picture
+
+	- Media
+		- Name
+		- Description
+		- Date of creation
+		- Featuered
+		- Preview
+		- Type of media
+		- Media Url
+
+Form for media adding ------------------------
 
 input name string
 input description string
@@ -42,13 +61,3 @@ select date
 select type of media
 select preview image
 featured checkmark
-
-
-	- Media
-		- Name
-		- Description
-		- Date of creation
-		- Type of media
-		- Featuered
-		- Media preview image Url
-		- Media Url

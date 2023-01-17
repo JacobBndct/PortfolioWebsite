@@ -1,76 +1,85 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PortfolioImage from '../images/PortfolioPicture2.png';
 import PortfolioImageHover from '../images/PortfolioPicture1.png';
 
+import '../CSS/homepage.css'
+
 // react bootstrap components
 import Image from 'react-bootstrap/Image'
-import Carousel from 'react-bootstrap/Carousel';
+import Carousel from './carousel.component';
 
 export default class Home extends Component {
     render() {
         return (
             <div>
-                <div style={{
-                    display: 'block', 
-                    width: '50%', 
-                    margin: 'auto', 
-                    padding: 30
-                }}>
-                    <Image className='shadow-lg' 
-                    src={PortfolioImage} 
-                    fluid 
-                    roundedCircle 
-                    style={
-                        {
-                            width: '100%',
-                            height: '100%',
-                            maxWidth: '500px',
-                            maxHeight: '500px',
-                        }
-                    }/>
-                </div>
                 <div>
-                    <p>I'm Jacob Benedict, a 3rd year student at Dalhousie University in Nova Scotia. I am extremely passionate about technical art, art, and game design.</p>
+                    <h3>I'm Jacob Benedict and welcome to my portfolio website :DD</h3>
+                    <p>I'm a 3rd year Bachelor of Computer Science student at Dalhousie University in Nova Scotia. I'm also Co-Vice President and a founding member of <a href='https://dalgame.dev/' target={'_blank'} rel="noreferrer">Dalhousie Interactive Gamedev (DIG)</a> & a Student Member of <a href='https://www.interactivenovascotia.com/' target={"_blank"} rel="noreferrer">Interactive Society of Nova Scotia (ISNS)</a>. I am extremely passionate about all aspects of game development with a particular interest in technical art. </p>
+                </div>
+                <div className='portfolio-image-container'>
+                    <Image className='shadow-lg portfolio-image' src={PortfolioImage} fluid roundedCircle />
                 </div>
                 <div>
                     <h3>Featured Work</h3>
-                    <Carousel>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src={PortfolioImage}
-                            alt="First slide"
-                            />
-                            <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src={PortfolioImage}
-                            alt="Second slide"
-                            />
-                            <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src={PortfolioImage}
-                            alt="Third slide"
-                            />
-                            <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>
-                                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                            </p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        </Carousel>
+                    <p>Here are a few of my featured projects and works</p>
+                    <Carousel show='3'>
+                        <div className='featured-item-container'>
+                            <Link to="/Art">
+                                <img className='preview-image'src={PortfolioImage} alt="placeholder" />
+                                <div className='description-text'>
+                                    <p>Image1</p>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className='featured-item-container'>
+                            <Link to="/Art">
+                                <img className='preview-image' src="https://via.placeholder.com/1600x300" alt="placeholder" />
+                                <div className='description-text'>
+                                    <p>Image2</p>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className='featured-item-container'>
+                            <Link to="/Art">
+                                <img className='preview-image' src={PortfolioImageHover} alt="placeholder" />
+                                <div className='description-text'>
+                                    <p>Image3</p>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className='featured-item-container'>
+                            <Link to="/Art">
+                                <img className='preview-image' src="https://via.placeholder.com/1600x300" alt="placeholder" />
+                                <div className='description-text'>
+                                        <p>Image4</p>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className='featured-item-container'>
+                            <Link to="/Art">
+                                    <img className='preview-image' src={PortfolioImageHover} alt="placeholder" />
+                                    <div className='description-text'>
+                                        <p>Image5</p>
+                                    </div>
+                            </Link>
+                        </div>
+                    </Carousel>
+                </div>
+                <div>
+                    {/* Click on skill in list of skills to open into pop up with previews of projects that use that skill */}
+                    {/* Populate skills depending on skills in the database */}
+                    <h3>Skills</h3>
+                    <p>See my skills in practice with my projects</p>                
+                    <ul>
+                        <li>Skill 1</li>
+                        <li>Skill 2</li>
+                        <li>Skill 3</li>
+                        <li>Skill 4</li>
+                        <li>Skill 5</li>
+                        <li>Skill 6</li>
+                        <li>Skill 7</li>
+                    </ul>
                 </div>
             </div>
         );
