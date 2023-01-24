@@ -1,0 +1,20 @@
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+}
+
+.art-container {
+    width: calc(33% - 40px);
+    position:relative;
+    display: inline-block;
+    padding:30px;
+    margin:10px;
+    align-items: flex-start;
+}
+
+img {
+    width: 100%;
+}
+

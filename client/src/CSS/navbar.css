@@ -1,0 +1,30 @@
+.filter-white {
+    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(195deg) brightness(107%) contrast(100%);
+}
+
+.nav-bar {
+    margin-left: -12px;
+    margin-right: -12px;
+    background: #5680E9;
+}
+
+.sm-icons {
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 960px) {
+    .sm-icons .nav-item {
+      padding-right: 1em;
+    }
+}
+
+@media (min-width: 992px) {
+    .nav-dir, #nav-down{
+        padding: 20px 8px;
+        margin: auto;
+    }
+
+    .nav-dir:hover {
+        transform: scale(1.1);
+    }
+}
