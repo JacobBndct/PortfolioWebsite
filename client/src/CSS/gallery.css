@@ -1,12 +1,16 @@
-.gallery-container {
+.gallery-col {
+    width: calc(33% - 20px);
     display: flex;
-    flex-wrap: wrap;
-    margin: auto;
+    flex-direction: column;
+    justify-content:flex-start;
+}
+
+.gallery-row {
+    display: flex;
     justify-content: center;
 }
 
 .art-container {
-    width: calc(33% - 40px);
     position:relative;
     display: inline-block;
     padding:30px;
@@ -18,3 +22,14 @@ img {
     width: 100%;
 }
 
+@media (max-width: 992px) {
+    .gallery-col{
+        width: calc(100% - 40px);
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: auto;
+    }
+    .gallery-row{
+        display: block;
+    }
+}

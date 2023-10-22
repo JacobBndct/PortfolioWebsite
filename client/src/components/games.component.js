@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 import GalleryImage from './gallery-image.component';
+import Gallery from './gallery.component';
 
 import '../CSS/gallery.css';
 
@@ -39,7 +40,7 @@ export default class Games extends Component {
 
             return <GalleryImage 
                 key={media._id} 
-                link={"/" + type} 
+                link={media.link} 
                 img={media.previewImageURL} 
                 mediaType={type} 
                 name={media.name} 
@@ -48,16 +49,18 @@ export default class Games extends Component {
             />
         });
     }
+
+
+
     render() {
+        let galleryItems = this.GalleryItems();
+
         return (
-            <div>
+            <div className='page-container'>
                 <h3>You are on the Games Page component</h3>
                 <p>I've been participating in gamejams as well as developping my own games for a couple years now. I've learned a lot from getting to work with all sorts of people and getting to see what otheres create</p>
                 <p>Tools: Unity, Maya</p>
-
-                <div className='gallery-container'>
-                    {this.GalleryItems()}
-                </div>
+                <Gallery galleryItems={galleryItems}></Gallery>
             </div>
         );
     }

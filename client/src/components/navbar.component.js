@@ -25,7 +25,7 @@ export default class Navbar extends Component {
                         <NavbarBS.Collapse id="basic-navbar-nav">
                             <NavBS className="me-auto">
                                 <NavBS.Item><Link to="/Art" className='nav-link nav-dir'>Art</Link></NavBS.Item>
-                                <NavBS.Item><Link to="/Games" className='nav-link nav-dir'>Games</Link></NavBS.Item>                        
+                                <NavBS.Item><Link to="/Game" className='nav-link nav-dir'>Games</Link></NavBS.Item>                        
                                 {/* <NavDropdownBS title="Technical Art" id='nav-down'>
                                     <Link to="/Shaders" className='nav-link nav-dir'>Shaders</Link>
                                     <Link to="/Rigging" className='nav-link nav-dir'>Rigging</Link>

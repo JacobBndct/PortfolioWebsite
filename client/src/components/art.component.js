@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 import GalleryImage from './gallery-image.component';
+import Gallery from './gallery.component';
 
 import '../CSS/gallery.css';
 
@@ -39,7 +40,6 @@ export default class Art extends Component {
 
             return <GalleryImage 
                 key={media._id} 
-                link={"/" + type} 
                 img={media.previewImageURL} 
                 mediaType={type} 
                 name={media.name} 
@@ -50,15 +50,15 @@ export default class Art extends Component {
     }
 
     render() {
+        let galleryItems = this.GalleryItems();
+
         return (
-            <div>
+            <div className='page-container'>
                 <h3>Welcome to my art gallery</h3>
                 <p>I started drawing and developing an interest in art early in 2020. Since then I've developped my skills and started practicing my art skills on paper and eventually moved towards digital. I've studied a few different digital artist and worked on improving my own skills with figure drawing and still drawings</p>
                 <p>Tools: Procreate, Krita, Maya</p>
 
-                <div className='gallery-container'>
-                    {this.GalleryItems()}
-                </div>
+                <Gallery galleryItems={galleryItems}></Gallery>
             </div>
         );
     }
