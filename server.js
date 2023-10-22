@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -40,6 +42,7 @@ app.use('/skills', skillsRouter);
 app.use('/tools', toolsRouter);
 app.use('/typesOfMedia', typeOfMediaRouter);
 
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
