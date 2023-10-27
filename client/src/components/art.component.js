@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
-import GalleryImage from './gallery-image.component';
+import GalleryItem from './gallery-item.component';
 import Gallery from './gallery.component';
 
 import '../CSS/gallery.css';
@@ -18,7 +18,7 @@ export default class Art extends Component {
     // Get info from database
     componentDidMount() {
         //featured media
-        Axios.get('http://localhost:5000/media/type_63cb182e227300bc8c4c4724')
+        Axios.get('http://jacobbndct.games/media/type_63cb182e227300bc8c4c4724')
         .then(response => {
             this.setState({ art: response.data });
         })
@@ -38,7 +38,7 @@ export default class Art extends Component {
 
             const type = media.typeOfMedia_ids.name.charAt(0).toUpperCase() + media.typeOfMedia_ids.name.slice(1);
 
-            return <GalleryImage 
+            return <GalleryItem 
                 key={media._id} 
                 img={media.previewImageURL} 
                 mediaType={type} 

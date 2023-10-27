@@ -31,7 +31,7 @@ export default class Home extends Component {
     // Get info from database
     componentDidMount() {
         //featured media
-        Axios.get('http://localhost:5000/media/featured')
+        Axios.get('http://jacobbndct.games/media/featured')
         .then(response => {
             this.setState({ featuredMedia: response.data });
         })
@@ -40,7 +40,7 @@ export default class Home extends Component {
         });
 
         //skills
-        Axios.get('http://localhost:5000/skills/')
+        Axios.get('http://jacobbndct.games/skills/')
         .then(response => {
             this.setState({ skills: response.data });
         })
@@ -84,7 +84,7 @@ export default class Home extends Component {
                 <AboutMe/>
                 <div className='homepage-section'>
                     <h3>Featured Work</h3>
-                    <p>Here are a few of my featured projects and works</p>
+                    <p>Here are a few of my featured projects and works styled as trading cards</p>
                     <Carousel show='3' length={this.state.featuredMedia.length}>
                         {  this.CarouselItems() }    
                     </Carousel>

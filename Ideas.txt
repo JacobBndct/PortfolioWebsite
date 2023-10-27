@@ -1,0 +1,7 @@
+1. Open new viewing option in the gallery for media to have a better look and get more information.
+3. Style featured items as "magic the gathering" style cards
+4. Find cool fonts to view
+5. Loading screen while gallery is loading
+6. Limit number of things loadable in a gallery
+7. Have the gallery be searchable by a couple different filters
+8. Showcase some tech art!!!

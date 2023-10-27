@@ -22,7 +22,7 @@ img {
     width: 100%;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991.98px) {
     .gallery-col{
         width: calc(100% - 40px);
         flex-direction: row;
