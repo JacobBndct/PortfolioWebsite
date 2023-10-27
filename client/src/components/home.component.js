@@ -31,7 +31,7 @@ export default class Home extends Component {
     // Get info from database
     componentDidMount() {
         //featured media
-        Axios.get('http://jacobbndct.games/media/featured')
+        Axios.get('https://jacobbndct.games/media/featured')
         .then(response => {
             this.setState({ featuredMedia: response.data });
         })
@@ -40,7 +40,7 @@ export default class Home extends Component {
         });
 
         //skills
-        Axios.get('http://jacobbndct.games/skills/')
+        Axios.get('https://jacobbndct.games/skills/')
         .then(response => {
             this.setState({ skills: response.data });
         })

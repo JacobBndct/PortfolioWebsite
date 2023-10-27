@@ -18,7 +18,7 @@ export default class Art extends Component {
     // Get info from database
     componentDidMount() {
         //featured media
-        Axios.get('http://jacobbndct.games/media/type_63cb182e227300bc8c4c4724')
+        Axios.get('https://jacobbndct.games/media/type_63cb182e227300bc8c4c4724')
         .then(response => {
             this.setState({ art: response.data });
         })

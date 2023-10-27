@@ -18,7 +18,7 @@ export default class Games extends Component {
     // Get info from database
     componentDidMount() {
         //featured media
-        Axios.get('http://jacobbndct.games/media/type_63cb1835227300bc8c4c4726')
+        Axios.get('https://jacobbndct.games/media/type_63cb1835227300bc8c4c4726')
         .then(response => {
             this.setState({ games: response.data });
         })
