@@ -10,12 +10,18 @@
     justify-content: center;
 }
 
-.art-container {
+.gallery-item-container {
     position:relative;
     display: inline-block;
     padding:30px;
     margin:10px;
     align-items: flex-start;
+    color: black;
+}
+
+.gallery-item-container:hover {
+    transform: scale(1.05);
+    background: lightgray;
 }
 
 img {

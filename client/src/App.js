@@ -12,6 +12,7 @@ import PageNotFound from './components/page-not-found.component';
 import Rigging from './components/rigging.components';
 import Shaders from './components/shaders.component';
 import TechnicalArt from './components/technical-art.component';
+import Programming from './components/programming.component';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path='/Rigging' element={<Rigging />}/>
             <Route path='/Shaders' element={<Shaders />}/>
             <Route path='/Technical-Art' element={<TechnicalArt />}/>
+            <Route path='/Programming' element={<Programming />}/>
             <Route path='*' element={<PageNotFound />}/>
           </Route>
         </Routes>

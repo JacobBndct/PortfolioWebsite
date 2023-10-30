@@ -40,13 +40,13 @@ export default class Home extends Component {
         });
 
         //skills
-        Axios.get('https://jacobbndct.games/skills/')
-        .then(response => {
-            this.setState({ skills: response.data });
-        })
-        .catch((err) => {
-            console.log('Error: ' + err);
-        });
+        // Axios.get('https://jacobbndct.games/skills/')
+        // .then(response => {
+        //     this.setState({ skills: response.data });
+        // })
+        // .catch((err) => {
+        //     console.log('Error: ' + err);
+        // });
     }
 
     CarouselItems() {
@@ -92,11 +92,11 @@ export default class Home extends Component {
                 <div className='homepage-section'>
                     {/* Click on skill in list of skills to open into pop up with previews of projects that use that skill */}
                     {/* Populate skills depending on skills in the database */}
-                    <h3>Skills</h3>
+                    {/* <h3>Skills</h3>
                     <p>See my skills in practice with my projects</p>                
                     <ul>
                         { this.ListItems() }
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
         );

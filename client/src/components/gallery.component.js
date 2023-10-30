@@ -1,4 +1,9 @@
 function SortMedia(allMedia) {
+    
+    allMedia?.sort((a, b) => {
+        return new Date(b.props.children.props.date) - new Date(a.props.children.props.date);
+    });
+
     let sortedMedia = [];
     let array1 = []; 
     let array2 = []; 

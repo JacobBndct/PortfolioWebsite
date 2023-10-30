@@ -29,6 +29,8 @@
     border-width: 10px;
     margin: 10%;
     text-decoration: none;
+
+    font-family: 'Cardo', serif;
 }
 
 .featured-item-card:hover {
@@ -55,6 +57,7 @@
 
 .description-text p {
     font-size: 10pt;
+    font-family: 'Cardo', serif;
 }
 
 .featured-item-title {
@@ -74,6 +77,8 @@
     border-color: rgba(255, 255, 255, 0.5);
 
     outline: 2px solid black;
+
+    font-weight: 700;
 }
 
 .featured-item-type {
@@ -93,6 +98,8 @@
     border-color: rgba(255, 255, 255, 0.5);
 
     outline: 2px solid black;
+
+    font-weight: 700;
 }
 
 .featured-item-notes {

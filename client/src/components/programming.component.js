@@ -7,21 +7,21 @@ import Gallery from './gallery.component';
 
 import '../CSS/gallery.css';
 
-export default class Games extends Component {
-    
+export default class Programming extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            games: [],
+            projects: [],
         };
     }
 
     // Get info from database
     componentDidMount() {
         //featured media
-        Axios.get('https://jacobbndct.games/media/type_63cb1835227300bc8c4c4726')
+        Axios.get('https://jacobbndct.games/media/type_653fd53043100b1745db48c3')
         .then(response => {
-            this.setState({ games: response.data });
+            this.setState({ projects: response.data });
         })
         .catch((err) => {
             console.log('Error: ' + err);
@@ -29,16 +29,16 @@ export default class Games extends Component {
     }
 
     GalleryItems() {
-        if (this.state.games === undefined || this.state.games.length === 0) {
+        if (this.state.projects === undefined || this.state.projects.length === 0) {
             console.log("empty");
             return null;
         }
 
-        return this.state.games.map(media => {
+        return this.state.projects.map(media => {
             let date = new Date(media.dateOfCreation);
 
             const type = media.typeOfMedia_ids.name.charAt(0).toUpperCase() + media.typeOfMedia_ids.name.slice(1);
-            
+
             return <Link to={media.link} target='blank' key={media._id}>
                 <GalleryItem 
                     key={media._id} 
@@ -57,10 +57,9 @@ export default class Games extends Component {
 
         return (
             <div className='page-container'>
-                <h3>Games Library</h3>
-                <p>I've been extremely passionate about games since I was a kid and discovered in University that I am equally passionate about creating them professionally. I'm constantly focused on learning more about games and their creation through my professional working experiences, game jams, mentorships, connecting with industry professionals, and personal projects. I've learned and continue to learn a lot from getting the opportunity to work alongside many amazing people and getting to see what games others create. Here are a few of the games and prototypes of my own that I've created.</p>
-                <p>Tools: Unity, Unreal Engine, Godot, Maya</p>
-
+                <h3>Programming Projects</h3>
+                <p>As a software engineer I love to take on new challenges and push myself. To do this I am constantly learning about new technologies and pushing my understanding of concept further. Some of the general programming projects I am most proud of are include below.</p>
+                <p>Programming languages: C#, JavaScript, Python, GLSL, C/C++, Java, HTML, PHP, pyMel</p>
                 <Gallery galleryItems={galleryItems}></Gallery>
             </div>
         );
