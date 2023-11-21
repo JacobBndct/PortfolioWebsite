@@ -1,7 +1,17 @@
-5. Loading screen while gallery is loading
-6. Limit number of things loadable in a gallery
-7. Have the gallery be searchable by a couple different filters
-8. Showcase some tech art!!!
+TASKS:
+1. Add a way to view/have more than 1 image per Work
+	- Add many different image / breakdowns of each piece
+3. Clean up gallery images
+	- hide description
+	- show tools used as icons
+4. Loading screen while gallery is loading
+5. Limit number of things loadable in a gallery
+6. Have the gallery be searchable by a couple different filters
+7npm . Showcase some tech art!!!
+
+Goals for breakdowns
+	- Showcase my skills and work
+	- Prove what I have done
 
 - shaders to make
     - Dithering

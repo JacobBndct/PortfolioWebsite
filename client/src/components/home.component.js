@@ -85,7 +85,7 @@ export default class Home extends Component {
                 <div className='homepage-section'>
                     <h3>Featured Work</h3>
                     <p>Here are a few of my featured projects and works styled as trading cards</p>
-                    <Carousel show='3' length={this.state.featuredMedia.length}>
+                    <Carousel show='3' length={this.state.featuredMedia.length} autoScroll={true}>
                         {  this.CarouselItems() }    
                     </Carousel>
                 </div>

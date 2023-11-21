@@ -62,7 +62,7 @@ const Carousel = (props) => {
 
     const [transitionEnabled, setTransitionEnabled] = useState(true);
 
-    const { children, show, length } = props;
+    const { children, show, length, autoScroll } = props;
     
 
     const { width } = useWindowDimensions();
@@ -102,7 +102,7 @@ const Carousel = (props) => {
 
     // Auto Scroll through the carousel
     useInterval(() => {
-        if (hasInteracted) {return;}
+        if (hasInteracted || !autoScroll) {return;}
         next();
     }, shortInterval);
 
@@ -112,7 +112,7 @@ const Carousel = (props) => {
             setInteracted(false);
             count = 0;
         }
-    }, 1000)
+    }, 1000);
 
     const handleTransitionEnd = () => {
         if (currentIndex <= 0) {
