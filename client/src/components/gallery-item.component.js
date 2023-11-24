@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useRef, useState } from 'react';
 
 import image from '../image/media_types/image.svg'
-import video from '../image/media_types/video.svg'
 
 function useDynamicSVGImport(name) {
     const ImportedIconRef = useRef();
@@ -27,6 +26,38 @@ function useDynamicSVGImport(name) {
     return { error, loading, SvgIcon: ImportedIconRef.current };
 }
 
+function findMediaType(breakdowns) {
+    let mediaTypes = [<div className='gallery-item-media-box rounded'>
+        <img className='filter-white' src={image} alt='tool'/>
+    </div>]
+
+    let breakdownTypes = findBreakdownTypes(breakdowns);
+    
+    mediaTypes.push(breakdownTypes?.map( types => {
+        return <div className='gallery-item-media-box rounded '>
+                <Icon width='100%' height='100%' className='filter-white' alt='tool' name={types}/>
+            </div>
+        })
+    );
+
+    return mediaTypes
+}
+
+function findBreakdownTypes(breakdowns) {
+
+    if (breakdowns == null) return;
+    
+    let breakdownTypes = [];
+
+    for (const breakdown of breakdowns) {
+        if (!breakdownTypes.includes(breakdown.type) && breakdown.type !== 'image') {
+            breakdownTypes.push(breakdown.type);
+        }
+    }
+
+    return breakdownTypes;
+}   
+
 const Icon = ({ name, ...rest }) => {
     const { error, loading, SvgIcon } = useDynamicSVGImport(name);
     if (error) {
@@ -51,12 +82,7 @@ export default class GalleryItem extends Component {
                     <h4 className='gallery-item-name filter-white'>{this.props.name}</h4>
                 </div>
                 <div className='gallery-item-media'>
-                    <div className='gallery-item-media-box rounded'>
-                        <img className='filter-white' src={image} alt='tool'/>
-                    </div>
-                    <div className='gallery-item-media-box rounded'>
-                        <img className='filter-white' src={video} alt='tool'/>
-                    </div>
+                    {findMediaType(this.props.breakdowns)}
                 </div>
                 <img className=''src={this.props.img} alt={this.props.name} />
             </div>            

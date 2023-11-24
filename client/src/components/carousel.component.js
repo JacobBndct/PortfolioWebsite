@@ -180,11 +180,11 @@ const Carousel = (props) => {
     return (
         <div className="carousel-container">
             <div className="carousel-wrapper">
-                <button onClick={leftButton} className="left-arrow">{'<'}</button>
+                {(length > 1) ? <button onClick={leftButton} className="left-arrow">{'<'}</button> : null}
                 <div className="carousel-content-wrapper" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
                     <div className={`carousel-content`} style={{ 
                         width: `calc((83.5% / ${(width < widthLimit) ? 1 : show}))`, 
-                        transform: `translateX(-${currentIndex * (100 + 20)}%)`,
+                        transform: (length > 1) ? `translateX(-${currentIndex * (100 + 20)}%)` : '0%',
                         transition: !transitionEnabled ? 'none' : undefined, 
                         }}
                         onTransitionEnd={() => handleTransitionEnd()}
@@ -194,7 +194,7 @@ const Carousel = (props) => {
                         {renderExtraNext()}
                     </div>
                 </div>
-                <button onClick={rightButton} className="right-arrow">{'>'}</button>
+                {(length > 1) ? <button onClick={rightButton} className="right-arrow">{'>'}</button> : null}
             </div>
         </div>
     );

@@ -52,6 +52,7 @@ function GenerateGalleryItems(media_data) {
                 name={media.name} 
                 date={date.toDateString().split(' ').slice(1).join(' ')}
                 description={media.description}
+                breakdowns={media.breakdowns}
             />
         </MediaDisplay>
     });
