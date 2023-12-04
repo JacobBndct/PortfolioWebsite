@@ -2,6 +2,13 @@ const mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
 
+let breakdownSchema = new Schema({
+    type: { type: String },
+    name: { type: String },
+    breakdownDescription: { type: String },
+    breakdownLink: { type: String }
+})
+
 let mediaSchema = new Schema({
     featured: { type: Boolean, default: false},
     weight: { type: Number },
@@ -18,14 +25,7 @@ let mediaSchema = new Schema({
     tool_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tool' }],
     skill_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }],
 
-    breakdowns: [{ 
-        breakdownItem: {
-            type: { type: String },
-            name: { type: String },
-            breakdownDescription: { type: String },
-            breakdownLink: { type: String },
-        }
-    }],
+    breakdowns: [breakdownSchema],
 });
 
 let Media = mongoose.model('Media', mediaSchema);
