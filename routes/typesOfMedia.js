@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
     });
 
     newTypeOfMedia.save()
-    .then(() => res.json('New type of media has added'))
+    .then(() => res.json({ id: newTypeOfMedia._id }))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

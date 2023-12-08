@@ -36,7 +36,7 @@ router.route('/add').post((req, res) => {
     });
 
     newTool.save()
-    .then(() => res.json('New tool has added'))
+    .then(() => res.json({ id: newTool._id }))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

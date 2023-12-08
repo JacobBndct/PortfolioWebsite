@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
     });
 
     newDiscipline.save()
-    .then(() => res.json('New discipline has added'))
+    .then(() => res.json({ id: newDiscipline._id }))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
     });
 
     newSkill.save()
-    .then(() => res.json('New skill has added'))
+    .then(() => res.json({ id: newSkill._id }))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

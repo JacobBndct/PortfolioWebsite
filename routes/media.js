@@ -88,7 +88,7 @@ router.route('/add').post((req, res) => {
     });
 
     newMedia.save()
-    .then(() => res.json('New media has added'))
+    .then(() => res.json({ id: newMedia._id }))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
