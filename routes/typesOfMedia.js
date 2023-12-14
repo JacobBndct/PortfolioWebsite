@@ -39,7 +39,7 @@ router.route('/add').post((req, res) => {
 //#region delete routes
 
 // delete typeOfMedia by id route
-router.route('/:id').delete((req, res) => {
+router.route('/delete/:id').delete((req, res) => {
     TypeOfMedia.findByIdAndDelete(req.params.id)
     .then(() => res.json('Type of media was deleted'))
     .catch(err => res.status(400).json('Error: ' + err));

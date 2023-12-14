@@ -39,7 +39,7 @@ router.route('/add').post((req, res) => {
 //#region delete routes
 
 // delete discipline by id route
-router.route('/:id').delete((req, res) => {
+router.route('/delete/:id').delete((req, res) => {
     Discipline.findByIdAndDelete(req.params.id)
     .then(() => res.json('Discipline was deleted'))
     .catch(err => res.status(400).json('Error: ' + err));

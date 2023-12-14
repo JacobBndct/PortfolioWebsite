@@ -45,7 +45,7 @@ router.route('/add').post((req, res) => {
 //#region delete routes
 
 // delete tools by id route
-router.route('/:id').delete((req, res) => {
+router.route('/delete/:id').delete((req, res) => {
     Tool.findByIdAndDelete(req.params.id)
     .then(() => res.json('Skill was deleted'))
     .catch(err => res.status(400).json('Error: ' + err));

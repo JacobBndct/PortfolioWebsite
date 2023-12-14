@@ -73,8 +73,9 @@ const Icon = ({ name, ...rest }) => {
 };
 
 export default class GalleryItem extends Component {
-    
+
     render() {
+
         return (
             <div className='gallery-item-container shadow rounded box'>
                 <div className='gallery-item-header'>

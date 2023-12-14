@@ -3,30 +3,6 @@ import Gallery from './gallery.component';
 
 import '../CSS/gallery.css';
 
-// function test() {
-//     fetch("https://jacobbndct.games/media/add", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             featured: false,
-
-//             typeOfMedia_ids: "63cb182e227300bc8c4c4724",
-//             name: "test",
-//             description: "this is a test",
-//             dateOfCreation: new Date('2022-03-27T14:48:00.000+00:00'),
-    
-//             previewImageURL: 'https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/A_Dream.jpg',
-//             mediaURL: 'https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/A_Dream.jpg',
-    
-//             tool_ids: [],
-//             skill_ids: [],
-//         }),
-//         headers: {
-//             "Content-type": "application/json; charset=UTF-8"
-//         }
-//     }).then((response) => response.json())
-//     .then((json) => console.log(json));
-// }
-
 export default class Games extends Component {
     render() {
         return (

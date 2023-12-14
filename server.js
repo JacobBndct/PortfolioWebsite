@@ -44,6 +44,10 @@ app.use('/typesOfMedia', typeOfMediaRouter);
 
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+})
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
 });
