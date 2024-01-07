@@ -26,11 +26,7 @@
     margin-right: 5%;
     padding-right: 5%;
 
-    border-style: solid;
-    border-left-width: 0;
-    border-bottom-width: 0;
-    border-top-width: 0;
-    border-right-width: 1;
+    border-right: 1px solid black;
 }
 
 .gallery-item-name {

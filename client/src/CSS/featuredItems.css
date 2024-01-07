@@ -62,22 +62,33 @@
 .featured-item-title {
     color: black;
 
+    display: inline-block;
+    white-space: nowrap;
     width: 100%;
 
     margin: 0;
 
     padding-top: 1%;
     padding-bottom: 1%;
-    padding-left: 3%;
-    padding-right: 3%;
+
+    font-weight: 700;
+}
+
+.title-container {
+    width: 100%;
 
     background-color: rgba(255, 255, 255, 0.4);
     border-style: outset;
     border-color: rgba(255, 255, 255, 0.5);
 
     outline: 2px solid black;
+    
+    padding-left: 3%;
+    padding-right: 3%;
+}
 
-    font-weight: 700;
+.fit-container {
+    width: 100%;
 }
 
 .featured-item-type {

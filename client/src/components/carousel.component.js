@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react'
 import '../CSS/carousel.css'
 
+import {ReactComponent as RightArrow} from '../image/right-arrow.svg'
+import {ReactComponent as LeftArrow} from '../image/left-arrow.svg'
+
 //#region Get Window Size
 
-function getWindowDimensions() {
+function GetWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
@@ -11,16 +14,16 @@ function getWindowDimensions() {
   };
 }
 
-function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+function UseWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(GetWindowDimensions());
 
   useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
+    function HandleResize() {
+      setWindowDimensions(GetWindowDimensions());
     }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', HandleResize);
+    return () => window.removeEventListener('resize', HandleResize);
   }, []);
 
   return windowDimensions;
@@ -28,7 +31,7 @@ function useWindowDimensions() {
 
 //#endregion
 
-function useInterval(callback, delay) {
+function UseInterval(callback, delay) {
     const savedCallback = useRef();
   
     // Remember the latest callback.
@@ -65,35 +68,58 @@ const Carousel = (props) => {
     const { children, show, length, autoScroll } = props;
     
 
-    const { width } = useWindowDimensions();
+    const { width } = UseWindowDimensions();
 
     const [currentIndex, setCurrentIndex] = useState(show);
     const [touchPosition, setTouchPosition] = useState(null);
 
-    // Set the length to match current children from props
+    const [isShowingDots, setShowingDots] = useState(false);
+    const [dots, setDots] = useState(null);
 
-    const next = () => {
-        setCurrentIndex(prevState => parseInt(prevState) + 1);
-        setTransitionEnabled(true);
+    useEffect(() => {
+        console.log(isShowingDots)
+        setDots(RenderDots(currentIndex % length));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentIndex]);
+
+    const RenderDots = (index) => {
+        let output = [];
+        if (length <= 1) {return null}
+        for (let i = 0; i < length; i++) {
+            if (i === index)
+                output.push(<span className='highlighted-dot'/>)
+            else
+                output.push(<span className='dot'/>);
+        }
+        return output;
     }
     
-    const prev = () => {
+    // Set the length to match current children from props
+
+    const Next = () => {
+        setCurrentIndex(prevState => parseInt(prevState) + 1);
+        setTransitionEnabled(true);
+        setShowingDots(true);
+    }
+    
+    const Prev = () => {
         setCurrentIndex(prevState => prevState - 1);
         setTransitionEnabled(true);
+        setShowingDots(true);
     }
 
-    const leftButton = () => {
+    const LeftButton = () => {
         if (canClick) {
-            prev();
+            Prev();
             setCanClick(false);
             setInteracted(true);
             count = 0;
         }
     }
 
-    const rightButton = () => {
+    const RightButton = () => {
         if (canClick) {
-            next();
+            Next();
             setCanClick(false);
             setInteracted(true);
             count = 0;
@@ -101,12 +127,13 @@ const Carousel = (props) => {
     }
 
     // Auto Scroll through the carousel
-    useInterval(() => {
+    UseInterval(() => {
         if (hasInteracted || !autoScroll) {return;}
-        next();
+        Next();
     }, shortInterval);
 
-    useInterval(() => {
+    // Reset interaction tracker
+    UseInterval(() => {
         count += 1000;
         if (count >= resetInterval) {
             setInteracted(false);
@@ -114,7 +141,12 @@ const Carousel = (props) => {
         }
     }, 1000);
 
-    const handleTransitionEnd = () => {
+    // // Hide dots
+    // UseInterval(() => {
+    //     setDots(null);
+    // }, 1000);
+
+    const HandleTransitionEnd = () => {
         if (currentIndex <= 0) {
             setTransitionEnabled(false);
             setCurrentIndex(length);
@@ -126,7 +158,7 @@ const Carousel = (props) => {
         setCanClick(true);
     }
 
-    const renderExtraPrev = () => {
+    const RenderExtraPrev = () => {
         let output = [];
         if (children === null) {return output}
         for (let index = 0; index < show; index++) {
@@ -136,7 +168,7 @@ const Carousel = (props) => {
         return output;
     }
 
-    const renderExtraNext = () => {
+    const RenderExtraNext = () => {
         let output = [];
         if (children === null) {return output}
         for (let index = 0; index < show; index++) {
@@ -147,12 +179,12 @@ const Carousel = (props) => {
 
 //#region Carousel Touch Controls
 
-    const handleTouchStart = (e) => {
+    const HandleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX;
         setTouchPosition(touchDown);
     }
 
-    const handleTouchMove = (e) => {
+    const HandleTouchMove = (e) => {
         const touchDown = touchPosition;
     
         if(touchDown === null) {
@@ -164,12 +196,12 @@ const Carousel = (props) => {
     
         //left swipe
         if (diff > 5) {
-            rightButton();
+            RightButton();
         }
     
         //right swipe
         if (diff < -5) {
-            leftButton();
+            LeftButton();
         }
     
         setTouchPosition(null);
@@ -180,21 +212,24 @@ const Carousel = (props) => {
     return (
         <div className="carousel-container">
             <div className="carousel-wrapper">
-                {(length > 1) ? <button onClick={leftButton} className="left-arrow">{'<'}</button> : null}
-                <div className="carousel-content-wrapper" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+                {(length > 1) ? <button onClick={LeftButton} className="left-arrow"><LeftArrow fill='gray' width='25' height='25'/></button> : null}
+                <div className="carousel-content-wrapper" onTouchStart={HandleTouchStart} onTouchMove={HandleTouchMove}>
                     <div className={`carousel-content`} style={{ 
                         width: `calc((83.5% / ${(width < widthLimit) ? 1 : show}))`, 
                         transform: (length > 1) ? `translateX(-${currentIndex * (100 + 20)}%)` : '0%',
                         transition: !transitionEnabled ? 'none' : undefined, 
                         }}
-                        onTransitionEnd={() => handleTransitionEnd()}
+                        onTransitionEnd={() => HandleTransitionEnd()}
                         >
-                        {renderExtraPrev()}
+                        {RenderExtraPrev()}
                         {children}
-                        {renderExtraNext()}
+                        {RenderExtraNext()}
                     </div>
                 </div>
-                {(length > 1) ? <button onClick={rightButton} className="right-arrow">{'>'}</button> : null}
+                {(length > 1) ? <button onClick={RightButton} className="right-arrow"><RightArrow fill='gray' width='25' height='25'/></button> : null}
+                <div className={`dot-container ${(isShowingDots) ? 'dot-show' : 'dot-hidden'}`} onTransitionEnd={() => setShowingDots(false)}>
+                    {dots}
+                </div>
             </div>
         </div>
     );

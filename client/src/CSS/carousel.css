@@ -63,8 +63,51 @@
     background-color: rgb(206, 206, 206);
 }
 
+.dot-show {
+    transition: all 250ms linear 2s;
+}
+
+.dot-hidden {
+    opacity: 0%;
+}
+
+.dot-container {
+    position: absolute;
+    z-index: 1;
+    top: 80%;
+    
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.dot, .highlighted-dot {
+    height: 0.75vw;
+    width: 0.75vw;
+
+    border-radius: 50%;
+    display: inline-block;
+    margin: 1%;
+}
+
+.dot {
+    background-color: rgba(206, 206, 206, 0.8);
+}
+
+.highlighted-dot {
+    background-color: rgba(145, 145, 145, 1.0);
+}
+
 @media (hover: none) and (pointer: coarse) {
     .left-arrow, .right-arrow {
         display: none;
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media only screen and (max-width: 991.98px) and (min-width: 767.99px) { 
+    .dot .highlighted-dot {
+        height: 2vw;
+        width: 2vw;
     }
 }
