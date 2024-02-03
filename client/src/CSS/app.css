@@ -1,10 +1,23 @@
 @import url('fonts.css');
 
+* {
+    /*main website colours*/
+    --primary-colour: #D5E2DC;
+    --primary-colour-light: blue;
+    --primary-colour-dark: blue;
+
+    --secondary-colour: #121212;
+
+    /*accent colours for the different pages*/
+    --art-colour: rgb(75, 177, 75);
+    --game-colour: rgb(212, 92, 92);
+    --shader-colour: rgb(201, 201, 81);
+    --programming-colour: rgb(89, 89, 211);
+
+}
+
 body {
-    background: rgb(86,128,233);
-    background: linear-gradient(180deg, rgba(86,128,233,1) 0%, rgba(90,185,234,1) 21%, rgba(132,206,235,1) 36%, rgba(193,200,228,1) 60%, rgba(136,96,208,1) 100%);
-    /* background: rgb(86,128,233);
-    background: linear-gradient(0deg, rgba(86,128,233,1) 0%, rgba(90,185,234,1) 21%, rgba(132,206,235,1) 36%, rgba(193,200,228,1) 60%, rgba(136,96,208,1) 100%); */
+    background: var(--primary-colour);
 }
 
 h3 {
@@ -14,9 +27,6 @@ h3 {
 }
 
 .page {
-    background-color: white;
-    border-bottom-style: solid;
-    border-color: #8860D0;
     min-height: 1000px;
 }
 

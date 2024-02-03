@@ -72,9 +72,7 @@
 }
 
 .dot-container {
-    position: absolute;
     z-index: 1;
-    top: 80%;
     
     display: flex;
     justify-content: center;

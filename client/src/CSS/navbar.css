@@ -3,12 +3,12 @@
 }
 
 .nav-bar {
-    margin-left: -12px;
-    margin-right: -12px;
-    background: #5680E9;
+    background: var(--secondary-colour);
 
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 700;
+
+    padding: 20px 3%;
 }
 
 .sm-icons {
@@ -23,7 +23,7 @@
 
 @media (min-width: 992px) {
     .nav-dir, #nav-down{
-        padding: 20px 8px;
+        padding: 0 8px;
         margin: auto;
     }
 

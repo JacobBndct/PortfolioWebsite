@@ -73,7 +73,7 @@ const Carousel = (props) => {
     const [currentIndex, setCurrentIndex] = useState(show);
     const [touchPosition, setTouchPosition] = useState(null);
 
-    const [isShowingDots, setShowingDots] = useState(false);
+    const [isShowingDots, setShowingDots] = useState(true);
     const [dots, setDots] = useState(null);
 
     useEffect(() => {
@@ -99,13 +99,11 @@ const Carousel = (props) => {
     const Next = () => {
         setCurrentIndex(prevState => parseInt(prevState) + 1);
         setTransitionEnabled(true);
-        setShowingDots(true);
     }
     
     const Prev = () => {
         setCurrentIndex(prevState => prevState - 1);
         setTransitionEnabled(true);
-        setShowingDots(true);
     }
 
     const LeftButton = () => {
@@ -227,9 +225,9 @@ const Carousel = (props) => {
                     </div>
                 </div>
                 {(length > 1) ? <button onClick={RightButton} className="right-arrow"><RightArrow fill='gray' width='25' height='25'/></button> : null}
-                <div className={`dot-container ${(isShowingDots) ? 'dot-show' : 'dot-hidden'}`} onTransitionEnd={() => setShowingDots(false)}>
+            </div>
+            <div className={`dot-container ${(isShowingDots) ? 'dot-show' : 'dot-hidden'}`} onTransitionEnd={() => setShowingDots(false)}>
                     {dots}
-                </div>
             </div>
         </div>
     );

@@ -16,6 +16,8 @@
     margin-right: auto; 
 
     padding: 2%;
+
+    z-index: 1;
 }
 
 .gallery-item-logo {
@@ -51,6 +53,8 @@
     margin-left: 2%;
     margin-bottom: 2%;
     background: black;
+
+    z-index: 1;
 }
 
 .gallery-col {
@@ -74,9 +78,20 @@
     color: black;
 }
 
-.gallery-item-container:hover {
-    transform: scale(1.05);
-    background: lightgray;
+.gallery-item-container:not(:hover) {
+    background: var(--primary-colour) !important;
+}
+
+.gallery-item-container:hover .gallery-item-thumbnail{
+    transform: scale(1.1);
+}
+
+.gallery-item-thumbnail-container {
+    overflow: hidden;
+}
+
+.gallery-item-thumbnail {
+    object-fit: cover;
 }
 
 img {

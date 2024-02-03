@@ -16,6 +16,10 @@ function Tilt(props) {
     return <div ref={tilt} {...rest} />;
 }
 
+function CardColour(type) {
+    return "linear-gradient(180deg, var(--" + type.toLowerCase() +"-colour) 0%, var(--" + type.toLowerCase() +"-colour) 100%)"
+}
+
 export default class CarouselItem extends Component {
     
     componentDidMount() {
@@ -38,10 +42,10 @@ export default class CarouselItem extends Component {
         return (
             <Tilt className='featured-item-card shadow rounded' options={options}>
                 <Link className='featured-item-link' to={this.props.link}>
-                    <div className='featured-item-container' data-tilt>
+                    <div className='featured-item-container' style={{background: CardColour(this.props.mediaType)}} data-tilt>
                         <div className='title-container rounded shadow-sm'>
                             <div className='fit-container'>
-                                <h4 className='featured-item-title '>{this.props.name}</h4>
+                                <h4 className='featured-item-title'>{this.props.name}</h4>
                             </div>
                         </div>
                         <img className='preview-image shadow-sm'src={this.props.img} alt={this.props.name} />

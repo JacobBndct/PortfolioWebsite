@@ -16,7 +16,7 @@ import Programming from './components/programming.component';
 
 function App() {
   return (
-    <div className='container page shadow-lg'>
+    <div className='page'>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Root />}>
