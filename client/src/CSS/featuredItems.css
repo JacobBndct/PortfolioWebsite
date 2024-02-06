@@ -4,11 +4,14 @@
 
     object-fit: cover;
 
-    background-color: rgba(255, 255, 255, 0.4);
     border-style: solid;
     border-color: rgba(255, 255, 255, 0.5);
 
     outline: 2px solid black;
+}
+
+.featured-item-background {
+    background-size: contain;
 }
 
 .featured-item-container {
@@ -26,7 +29,7 @@
 .featured-item-card {
     border-color: black;
     border-style: solid;
-    border-width: 10px;
+    border-width: 13px;
     margin: 10%;
 
     font-family: 'Cardo', serif;
@@ -47,7 +50,6 @@
     padding-left: 3%;
     padding-right: 3%;
 
-    background-color: rgba(255, 255, 255, 0.4);
     border-style:inset;
     border-color: rgba(255, 255, 255, 0.5);
 
@@ -55,7 +57,7 @@
 }
 
 .description-text p {
-    font-size: 10pt;
+    font-size: 15pt;
     font-family: 'Cardo', serif;
 }
 
@@ -77,9 +79,8 @@
 .title-container {
     width: 100%;
 
-    background-color: rgba(255, 255, 255, 0.4);
     border-style: outset;
-    border-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
 
     outline: 2px solid black;
     
@@ -98,12 +99,13 @@
 
     margin: 0;
 
+    z-index: 1;
+
     padding-top: 1%;
     padding-bottom: 1%;
     padding-left: 3%;
     padding-right: 3%;
 
-    background-color: rgba(255, 255, 255, 0.4);
     border-style: outset;
     border-color: rgba(255, 255, 255, 0.5);
 
@@ -119,12 +121,12 @@
 
 .featured-item-creators {
     color: black;
-    font-size: 8pt;
+    font-size: 12pt;
 }
 
 .featured-item-date {
     color: black;
-    font-size: 7pt;
+    font-size: 11pt;
 }
 
 .featured-item-notes p {

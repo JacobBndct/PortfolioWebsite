@@ -2,17 +2,17 @@
 
 * {
     /*main website colours*/
-    --primary-colour: #D5E2DC;
+    --primary-colour: #ebf3ef;
     --primary-colour-light: blue;
     --primary-colour-dark: blue;
 
     --secondary-colour: #121212;
 
     /*accent colours for the different pages*/
-    --art-colour: rgb(75, 177, 75);
-    --game-colour: rgb(212, 92, 92);
-    --shader-colour: rgb(201, 201, 81);
-    --programming-colour: rgb(89, 89, 211);
+    --art-colour: 127, 171, 100;
+    --game-colour: 172, 67, 70;
+    --shader-colour: 208, 118, 58;
+    --programming-colour: 47, 126, 161;
 
 }
 
@@ -31,10 +31,27 @@ h3 {
 }
 
 .page-container {
-    padding-left: 5%;
-    padding-top: 1%;
-    padding-bottom: 0%;
-    padding-right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wide-section {
+    width: 80%;
+    max-width: 1500px;
+    margin-bottom: 50px;
+}
+
+.normal-section {
+    width: 80%;
+    max-width: 1300px;
+    margin-bottom: 50px;
+}
+
+.thin-section {
+    width: 80%;
+    max-width: 1200px;
+    margin-bottom: 50px;
 }
 
 p {

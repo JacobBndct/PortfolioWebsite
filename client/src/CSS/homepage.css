@@ -14,6 +14,86 @@
     padding-bottom: 30px;
 }
 
-.homepage-section {
-    margin-bottom: 50px;
+
+/*header section*/
+
+.banner {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 600px;
+}
+
+.banner-textbox {
+    position: relative;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+    height: 100%;
+
+    color: var(--primary-colour);
+}
+
+.banner-align {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.banner-h1 {
+    font-size: 100pt;
+    text-align: center;
+}
+
+.banner-h3 {
+
+}
+
+.art-section, .game-section, .tech-art-section, .programming-section {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    background-size: cover;
+    background-position: right;
+    background-blend-mode: soft-light;
+}
+
+.art-section {
+    left: 0;
+    top: 0;
+    background-color: color-mix(in srgb, rgba(var(--art-colour), 0.4) 80%, black);
+    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/OuterWilds.png);
+	-webkit-clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+    -moz-clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+}
+
+.game-section {
+    left: 17%;
+    top: 0;
+    background-color: color-mix(in srgb, rgba(var(--game-colour), 0.4) 80%, black);
+    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/WorldWide.png);
+	-webkit-clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+    -moz-clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+    clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+}
+
+.tech-art-section {
+    left: 45%;
+    top: 0;
+    background-color: color-mix(in srgb, rgba(var(--shader-colour), 0.4) 80%, black);
+    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/DistanceTransform.png);
+	-webkit-clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+    -moz-clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+    clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+}
+
+.programming-section {
+    left: 73%;
+    top: 0;
+    background-color: color-mix(in srgb, rgba(var(--programming-colour), 0.4) 70%, black);
+    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/GameKnowledgeEmporium.png);
+	-webkit-clip-path: polygon(20% 0%, 54% 0%, 54% 100%, 0% 100%);
+    -moz-clip-path: polygon(20% 0%, 54% 0%, 54% 100%, 0% 100%);
+    clip-path: polygon(20% 0%, 54% 0%, 54% 100%, 0% 100%);
 }

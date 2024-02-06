@@ -7,7 +7,9 @@ import '../CSS/homepage.css'
 // Components
 import AboutMe from './about-me.component';
 import Carousel from './carousel.component';
-import CarouselItem from './carousel-item.component';
+import FeaturedItem from './featured-item.component';
+import Banner from './banner.component';
+
 
 function truncateString(str, cutOff) {
     if (str.length <= cutOff) {
@@ -60,7 +62,7 @@ export default class Home extends Component {
 
             const type = media.typeOfMedia_ids.name.charAt(0).toUpperCase() + media.typeOfMedia_ids.name.slice(1);
 
-            return <CarouselItem 
+            return <FeaturedItem 
                 key={media._id} 
                 link={"/" + type} 
                 img={media.previewImageURL} 
@@ -81,15 +83,16 @@ export default class Home extends Component {
     render() {
         return (
             <div className='page-container'>
+                <Banner/>
                 <AboutMe/>
-                <div className='homepage-section'>
+                <div className='wide-section'>
                     <h3>Featured Work</h3>
                     <p>Here are a few of my featured projects and works styled as trading cards</p>
                     <Carousel show='3' length={this.state.featuredMedia.length} autoScroll={true}>
                         {  this.CarouselItems() }    
                     </Carousel>
                 </div>
-                <div className='homepage-section'>
+                <div className='wide-section'>
                     {/* Click on skill in list of skills to open into pop up with previews of projects that use that skill */}
                     {/* Populate skills depending on skills in the database */}
                     {/* <h3>Skills</h3>

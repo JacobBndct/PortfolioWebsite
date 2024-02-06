@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
 
 function CardColour(type) {
-    return "linear-gradient(180deg, var(--" + type.toLowerCase() +"-colour) 0%, var(--" + type.toLowerCase() +"-colour) 100%)"
+    return "rgb(var(--" + type.toLowerCase() +"-colour))"
 }
 
 export default class GalleryItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            background: CardColour('var(--primary-colour)')
+        };
+    }
+
+    handleMouseOver = () => {
+        this.setState({ background: CardColour(this.props.mediaType) });
+    };
+
+    handleMouseOut = () => {
+        this.setState({ background: 'var(--primary-colour)' });
+    };
 
     render() {
-        
         return (
-            <div className='gallery-item-container shadow rounded box' style={{background: CardColour(this.props.mediaType)}}>
+            <div 
+                className='gallery-item-container shadow rounded box' 
+                style={{background: this.state.background, transition: "background 150ms ease-in-out"}}
+                onMouseOver={this.handleMouseOver}
+                onMouseOut={this.handleMouseOut}
+            >
                 <div className='gallery-item-header'>
                     {this.props.toolIcons}
                     <h4 className='gallery-item-name filter-white'>{this.props.name}</h4>

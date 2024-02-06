@@ -9,7 +9,6 @@ export default class Root extends Component {
         return (
             <>
                 <Navbar />
-                <br />
                 <Outlet />
             </>
         );

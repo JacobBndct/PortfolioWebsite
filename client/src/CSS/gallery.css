@@ -78,12 +78,13 @@
     color: black;
 }
 
-.gallery-item-container:not(:hover) {
-    background: var(--primary-colour) !important;
+.gallery-item-container:hover .gallery-item-thumbnail{
+    transform: scale(1.075);
+    transition: all 200ms 50ms ease-in-out;
 }
 
-.gallery-item-container:hover .gallery-item-thumbnail{
-    transform: scale(1.1);
+.gallery-item-container:hover {
+    cursor: pointer;
 }
 
 .gallery-item-thumbnail-container {
@@ -92,6 +93,7 @@
 
 .gallery-item-thumbnail {
     object-fit: cover;
+    transition: all 100ms ease-in-out;
 }
 
 img {

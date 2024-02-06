@@ -67,7 +67,7 @@ const Carousel = (props) => {
 
     const { children, show, length, autoScroll } = props;
     
-
+    const [pauseAutoScroll, setPauseAutoScroll] = useState(false);
     const { width } = UseWindowDimensions();
 
     const [currentIndex, setCurrentIndex] = useState(show);
@@ -81,6 +81,14 @@ const Carousel = (props) => {
         setDots(RenderDots(currentIndex % length));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentIndex]);
+
+    useEffect(() => {
+        if (width < widthLimit) {
+            setPauseAutoScroll(true);
+        } else {
+            setPauseAutoScroll(false);
+        }
+    }, [width]);
 
     const RenderDots = (index) => {
         let output = [];
@@ -126,7 +134,7 @@ const Carousel = (props) => {
 
     // Auto Scroll through the carousel
     UseInterval(() => {
-        if (hasInteracted || !autoScroll) {return;}
+        if (hasInteracted || !autoScroll || pauseAutoScroll) {return;}
         Next();
     }, shortInterval);
 
@@ -138,11 +146,6 @@ const Carousel = (props) => {
             count = 0;
         }
     }, 1000);
-
-    // // Hide dots
-    // UseInterval(() => {
-    //     setDots(null);
-    // }, 1000);
 
     const HandleTransitionEnd = () => {
         if (currentIndex <= 0) {
@@ -208,7 +211,7 @@ const Carousel = (props) => {
 //#endregion
 
     return (
-        <div className="carousel-container">
+        <div className="carousel-container" onMouseOver={() => setPauseAutoScroll(true)} onMouseOut={() => setPauseAutoScroll(false)}>
             <div className="carousel-wrapper">
                 {(length > 1) ? <button onClick={LeftButton} className="left-arrow"><LeftArrow fill='gray' width='25' height='25'/></button> : null}
                 <div className="carousel-content-wrapper" onTouchStart={HandleTouchStart} onTouchMove={HandleTouchMove}>

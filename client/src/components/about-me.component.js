@@ -38,16 +38,16 @@ const AboutMe = () => {
     const { width } = useWindowDimensions();
 
     return (
-        <div className='row align-items-center'>
+        <div className='row align-items-center normal-section'>
             <div className={`${(width < widthLimit) ? '' : 'col-6 order-2'}`}>
                 <div className='portfolio-image-container d-flex justify-content-center'>
                     <Image className='shadow-lg portfolio-image' src="https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/PortfolioPicture2.png" fluid roundedCircle />
                 </div>
             </div>
             <div className={`${(width < widthLimit) ? '' : 'col-6'}`}>
-                <div className='homepage-section'>
+                <div className=''>
                     <h3>About Me</h3>
-                    <p>I'm Jacob Benedict and welcome to my portfolio website. I'm a 3rd year Bachelor of Computer Science student persusing a minor in Mathematics and a certificate in Certificate in Graphics, Gaming, and Media at Dalhousie University in Nova Scotia. I'm also Vice President and Co-Founder of <a href='https://dalgame.dev/' target={'_blank'} rel="noreferrer">Dalhousie Interactive Gamedev (DIG)</a> & a Student Member of <a href='https://www.interactivenovascotia.com/' target={"_blank"} rel="noreferrer">Interactive Society of Nova Scotia (ISNS)</a>. I am extremely passionate about all aspects of game development with a particular interest in game design and technical art. </p>
+                    <p>I'm a 3rd year Bachelor of Computer Science student persusing a minor in Mathematics and a certificate in Certificate in Graphics, Gaming, and Media at Dalhousie University in Nova Scotia. I'm also Vice President and Co-Founder of <a href='https://dalgame.dev/' target={'_blank'} rel="noreferrer">Dalhousie Interactive Gamedev (DIG)</a> & a Student Member of the <a href='https://www.interactivenovascotia.com/' target={"_blank"} rel="noreferrer">Interactive Society of Nova Scotia (ISNS)</a>. I am extremely passionate about all aspects of game development with a particular interest in game design and technical art. </p>
                 </div>
             </div>
         </div>

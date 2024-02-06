@@ -177,7 +177,7 @@ export default class Gallery extends Component {
         let sortedItems = SortMedia(items)
 
         return (
-            <div className='gallery-row'>
+            <div className='gallery-row wide-section'>
                 <div className='gallery-col'>
                     {sortedItems?.at(0)}
                 </div>

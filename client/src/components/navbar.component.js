@@ -17,7 +17,7 @@ export default class Navbar extends Component {
     render() {
         return (
             <NavbarBS className='nav-bar sticky-top' variant='dark' expand="lg">
-                <NavbarBS.Brand><Link to="/" className='navbar-brand'>Jacob Benedict's Portfolio Website</Link></NavbarBS.Brand>
+                <NavbarBS.Brand><Link to="/" className='navbar-brand'>JACOB BENEDICT</Link></NavbarBS.Brand>
                 <NavbarBS.Toggle aria-controls="basic-navbar-nav" />
                 <NavbarBS.Collapse id="basic-navbar-nav">
                     <NavBS className="me-auto">
