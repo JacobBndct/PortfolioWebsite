@@ -31,7 +31,7 @@
     z-index: 1;
     height: 100%;
 
-    color: var(--primary-colour);
+    color: var(--primary-colour-light);
 }
 
 .banner-align {

@@ -3,8 +3,8 @@
 * {
     /*main website colours*/
     --primary-colour: #ebf3ef;
-    --primary-colour-light: blue;
-    --primary-colour-dark: blue;
+    --primary-colour-light: color-mix(in srgb, var(--primary-colour) 30%, white 70%);
+    --primary-colour-dark: color-mix(in srgb, var(--primary-colour) 90%, black 10%);
 
     --secondary-colour: #121212;
 
@@ -20,6 +20,12 @@ body {
     background: var(--primary-colour);
 }
 
+h1 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
 h3 {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 800;
@@ -30,7 +36,7 @@ h3 {
     min-height: 1000px;
 }
 
-.page-container {
+.page-container, .light-section, .dark-section, .standard-section{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,6 +46,21 @@ h3 {
     width: 80%;
     max-width: 1500px;
     margin-bottom: 50px;
+}
+
+.light-section {
+    background-color: var(--primary-colour-light);
+    width: 100%;
+}
+
+.standard-section {
+    background-color: var(--primary-colour);
+    width: 100%;
+}
+
+.dark-section {
+    background-color: var(--primary-colour-dark);
+    width: 100%;
 }
 
 .normal-section {
