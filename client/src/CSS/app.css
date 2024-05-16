@@ -36,16 +36,14 @@ h3 {
     min-height: 1000px;
 }
 
-.page-container, .light-section, .dark-section, .standard-section{
+.page-container, .light-section, .dark-section, .standard-section {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.wide-section {
-    width: 80%;
-    max-width: 1500px;
-    margin-bottom: 50px;
+.light-section, .dark-section, .standard-section, .thin-section, .wide-section, .normal-section {
+    padding-top: 20px;
 }
 
 .light-section {
@@ -61,6 +59,12 @@ h3 {
 .dark-section {
     background-color: var(--primary-colour-dark);
     width: 100%;
+}
+
+.wide-section {
+    width: 80%;
+    max-width: 1500px;
+    margin-bottom: 50px;
 }
 
 .normal-section {

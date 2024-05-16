@@ -24,6 +24,12 @@ router.route('/featured').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//NEEDS TO HAVE AN OFFSET + NUMBER OF ENTRIES TO GET
+
+//NEEDS TO HAVE A MODE OF SORTING
+
+//NEEDS TO HAVE A WAY TO FILTER DATA
+
 // get all media for a type
 router.route('/type_:typeOfMedia').get((req, res) => {
     Media.find({typeOfMedia_ids: req.params.typeOfMedia})
@@ -47,6 +53,8 @@ router.route('/id_:id').get((req, res) => {
 //#endregion
 
 //#region add routes
+
+//THIS NEEDS A KEY OR PASSCODE IN ORDER TO POST TO THE DATABASE
 
 // add new media route
 router.route('/add').post((req, res) => {
@@ -96,6 +104,8 @@ router.route('/add').post((req, res) => {
 
 //#region delete routes
 
+//ALSO NEEDS A KEY OR PASSCODE
+
 // delete media by id route
 router.route('/delete/:id').delete((req, res) => {
     Media.findByIdAndDelete(req.params.id)
@@ -106,6 +116,8 @@ router.route('/delete/:id').delete((req, res) => {
 //#endregion
 
 //#region update routes
+
+//ALSO NEEDS A KEY OR PASSCODE
 
 // update media by id route
 router.route('/update/:id').post((req, res) => {

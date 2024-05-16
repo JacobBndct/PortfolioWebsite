@@ -47,7 +47,15 @@ const AboutMe = () => {
             <div className={`${(width < widthLimit) ? '' : 'col-6'}`}>
                 <div className=''>
                     <h3>About Me</h3>
-                    <p>I'm a 3rd year Bachelor of Computer Science student persusing a minor in Mathematics and a certificate in Certificate in Graphics, Gaming, and Media at Dalhousie University in Nova Scotia. I'm also Vice President and Co-Founder of <a href='https://dalgame.dev/' target={'_blank'} rel="noreferrer">Dalhousie Interactive Gamedev (DIG)</a> & a Student Member of the <a href='https://www.interactivenovascotia.com/' target={"_blank"} rel="noreferrer">Interactive Society of Nova Scotia (ISNS)</a>. I am extremely passionate about all aspects of game development with a particular interest in game design and technical art. </p>
+                    <p>
+                      I'm a 3rd year Bachelor of Computer Science student pursuing a minor in Mathematics and a certificate in Certificate in Graphics, Gaming, and Media at Dalhousie University in Nova Scotia.
+                    </p>
+                    <p>
+                    I'm also Vice President and Co-Founder of <a href='https://dalgame.dev/' target={'_blank'} rel="noreferrer">Dalhousie Interactive Gamedev (DIG)</a> & a Student Member of the <a href='https://www.interactivenovascotia.com/' target={"_blank"} rel="noreferrer">Interactive Society of Nova Scotia (ISNS)</a>.
+                    </p>
+                    <p>
+                    I am extremely passionate about all aspects of game development with a particular interest in game design and technical art. 
+                    </p>
                 </div>
             </div>
         </div>
