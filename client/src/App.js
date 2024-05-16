@@ -13,11 +13,13 @@ import Rigging from './components/rigging.components';
 import Shaders from './components/shaders.component';
 import TechnicalArt from './components/technical-art.component';
 import Programming from './components/programming.component';
+import ScrollToTop from './scroll-to-top';
 
 function App() {
   return (
     <div className='page'>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path='/' element={<Root />}>
             <Route index element={<Home />} />
