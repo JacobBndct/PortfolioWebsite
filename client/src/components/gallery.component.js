@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios';
 
 import GalleryItem from './gallery-item.component';
@@ -53,11 +53,6 @@ function findMediaTypeHelper(breakdowns) {
 }
 
 function SortMedia(allMedia) {
-    
-    allMedia?.sort((a, b) => {
-        return new Date(b.props.children.props.date) - new Date(a.props.children.props.date);
-    });
-
     let sortedMedia = [];
     let array1 = []; 
     let array2 = []; 
@@ -111,45 +106,54 @@ function GenerateGalleryItems(media_data) {
     });
 }
 
-export default class Gallery extends Component {
+function Gallery({ mediaType_id }) {
+  const [media, setMedia] = useState([]);
+  const [skip, setSkip] = useState(0);
+  const endRef = useRef();
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            media: [],
-        };
-    }
+  const getMedia = (media_id, limit, offset) => {
+    Axios.get(`https://jacobbndct.games/media/type_${media_id}?limit=${limit}&offset=${offset}`)
+      .then((response) => {
+        setMedia((prevMedia) => [...prevMedia, ...response.data]);
+      })
+      .catch((err) => {
+        console.log('Error: ' + err);
+      });
+  };
 
-    GetMedia(media_id) {
-        Axios.get(`https://jacobbndct.games/media/type_${media_id}`)
-        .then(response =>  {
-            this.setState({ media: response.data });
-        })
-        .catch((err) => {
-            console.log('Error: ' + err);
-        });
-    }
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      console.log("Loaded 3");
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          getMedia(mediaType_id, 3, skip);
+          setSkip((prevSkip) => prevSkip + 3);
+        }, 1000);
+      }
+    });
 
-    componentDidMount() {
-        this.GetMedia(this.props.mediaType_id)
-    }
+    observer.observe(endRef.current);
 
-    render() {
-        let items = GenerateGalleryItems(this.state.media);
-        let sortedItems = SortMedia(items)
+    return () => {
+      observer.disconnect();
+    };
 
-        return (
-            <div className='gallery-row wide-section'>
-                <div className='gallery-col'>
-                    {sortedItems?.at(0)}
-                </div>
-                <div className='gallery-col'>
-                    {sortedItems?.at(1)}
-                </div>
-                <div className='gallery-col'>
-                    {sortedItems?.at(2)}
-                </div>
-            </div>
-        );
-    }    
+  }, [mediaType_id, skip]);
+
+  let items = GenerateGalleryItems(media);
+  const sortedItems = SortMedia(items);
+
+  return (
+    <div className='wide-section'>
+      <div className='gallery-row'>
+        <div className='gallery-col'>{sortedItems?.at(0)}</div>
+        <div className='gallery-col'>{sortedItems?.at(1)}</div>
+        <div className='gallery-col'>{sortedItems?.at(2)}</div>
+      </div>
+      <div className='wide-section' ref={endRef}></div>
+    </div>
+  );
 }
+
+export default Gallery;
