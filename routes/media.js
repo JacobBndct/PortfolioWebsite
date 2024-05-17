@@ -43,13 +43,20 @@ router.route('/type_:typeOfMedia').get((req, res) => {
     }
 
     Media.find({typeOfMedia_ids: req.params.typeOfMedia})
-    .sort()
+    .sort('dateOfCreation')
     .skip(offset)
     .limit(limit)
     .populate('typeOfMedia_ids')
     .populate('tool_ids')
     .populate('skill_ids') 
     .then(media => res.json(media))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/typeCount_:typeOfMedia').get((req, res) => {
+    Media.find({typeOfMedia_ids: req.params.typeOfMedia})
+    .count()
+    .then(count => res.json(count))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
