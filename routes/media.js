@@ -32,7 +32,20 @@ router.route('/featured').get((req, res) => {
 
 // get all media for a type
 router.route('/type_:typeOfMedia').get((req, res) => {
+    var limit = 100;
+    var offset = 0;
+
+    if (req.query.limit) {
+        limit = req.query.limit;
+    }
+    if (req.query.offset) {
+        offset = req.query.offset;
+    }
+
     Media.find({typeOfMedia_ids: req.params.typeOfMedia})
+    .sort()
+    .skip(offset)
+    .limit(limit)
     .populate('typeOfMedia_ids')
     .populate('tool_ids')
     .populate('skill_ids') 

@@ -6,44 +6,6 @@ import MediaDisplay from './media-display.component';
 
 import image from '../image/media_types/image.svg'
 
-// function useDynamicSVGImport(name) {
-//     const ImportedIconRef = useRef();
-//     const [loading, setLoading] = useState(false);
-//     const [error, setError] = useState();
-
-//     useEffect(() => {
-//         setLoading(true);
-//         const importIcon = async () => {
-//             try {              
-//                 ImportedIconRef.current = (await import(`!!@svgr/webpack?-svgo,+titleProp,+ref!../image/media_types/${name}.svg`)).default;
-//                 console.log(`${name} successfully loaded`);
-//             } catch (err) {
-//                 console.error(err.message);
-//                 setError(err);
-//             } finally {
-//                 setLoading(false);
-//             }
-//         };
-//         importIcon();
-//     }, []);
-
-//     return { error, loading, SvgIcon: ImportedIconRef.current };
-// }
-
-// const Icon = ({ name, ...rest }) => {
-//     const { error, loading, SvgIcon } = useDynamicSVGImport(name);
-//     if (error) {
-//         return null;
-//     }
-//     if (loading) {
-//         return "Loading...";
-//     }
-//     if (SvgIcon) {
-//         return <SvgIcon {...rest} />;
-//     }
-//     return null;
-// };
-
 const Icon = ({ name, ...rest }) => {
     const reqSvgs = require.context("!!@svgr/webpack?-svgo,+titleProp,+ref!../image/media_types/", true, /\.svg$/);
 
