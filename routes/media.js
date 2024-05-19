@@ -43,7 +43,7 @@ router.route('/type_:typeOfMedia').get((req, res) => {
     }
 
     Media.find({typeOfMedia_ids: req.params.typeOfMedia})
-    .sort('dateOfCreation')
+    .sort({dateOfCreation: -1})
     .skip(offset)
     .limit(limit)
     .populate('typeOfMedia_ids')
@@ -54,10 +54,10 @@ router.route('/type_:typeOfMedia').get((req, res) => {
 });
 
 router.route('/typeCount_:typeOfMedia').get((req, res) => {
-    Media.find({typeOfMedia_ids: req.params.typeOfMedia})
-    .count()
-    .then(count => res.json(count))
-    .catch(err => res.status(400).json('Error: ' + err));
+    Media.count({typeOfMedia_ids: req.params.typeOfMedia}, function(err, count){
+        console.log( "Number of users:", count );
+        res.json(count.toString());
+    })
 });
 
 // get media by id route

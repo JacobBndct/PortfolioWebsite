@@ -108,13 +108,26 @@ function GenerateGalleryItems(media_data) {
 
 function Gallery({ mediaType_id }) {
   const [media, setMedia] = useState([]);
+  const [mediaLock, setMediaLock] = useState(false);
+  const [mediaCount, setMediaCount] = useState(0);
   const [skip, setSkip] = useState(0);
   const endRef = useRef();
 
   const getMedia = (media_id, limit, offset) => {
-    Axios.get(`https://jacobbndct.games/media/type_${media_id}?limit=${limit}&offset=${offset}`)
+      Axios.get(`https://jacobbndct.games/media/type_${media_id}?limit=${limit}&offset=${offset}`)
       .then((response) => {
         setMedia((prevMedia) => [...prevMedia, ...response.data]);
+        setSkip((prevSkip) => prevSkip + limit);
+      })
+      .catch((err) => {
+        console.log('Error: ' + err);
+      });
+  };
+
+  const getMediaCount = (media_id) => {
+    Axios.get(`https://jacobbndct.games/media/typeCount_${media_id}`)
+      .then((response) => {
+        setMediaCount(response.data);
       })
       .catch((err) => {
         console.log('Error: ' + err);
@@ -124,12 +137,10 @@ function Gallery({ mediaType_id }) {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      console.log("Loaded 3");
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          getMedia(mediaType_id, 3, skip);
-          setSkip((prevSkip) => prevSkip + 3);
-        }, 1000);
+      if (entry.isIntersecting && !mediaLock) {
+        setMediaLock(true);
+        getMedia(mediaType_id, 1, skip);
+        setMediaLock(false);
       }
     });
 
@@ -147,11 +158,19 @@ function Gallery({ mediaType_id }) {
   return (
     <div className='wide-section'>
       <div className='gallery-row'>
-        <div className='gallery-col'>{sortedItems?.at(0)}</div>
-        <div className='gallery-col'>{sortedItems?.at(1)}</div>
-        <div className='gallery-col'>{sortedItems?.at(2)}</div>
+        <div className='gallery-col'>
+          {sortedItems?.at(0)}
+          <div ref={endRef}/>
+        </div>
+        <div className='gallery-col'>
+          {sortedItems?.at(1)}
+          <div ref={endRef}/>
+        </div>
+        <div className='gallery-col'>
+          {sortedItems?.at(2)}
+          <div ref={endRef}/>
+        </div>
       </div>
-      <div className='wide-section' ref={endRef}></div>
     </div>
   );
 }
