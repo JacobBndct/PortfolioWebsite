@@ -70,7 +70,7 @@ const Carousel = (props) => {
     const [pauseAutoScroll, setPauseAutoScroll] = useState(false);
     const { width } = UseWindowDimensions();
 
-    const [currentIndex, setCurrentIndex] = useState(show);
+    const [currentIndex, setCurrentIndex] = useState(show === '1' ? 0 : show);
     const [touchPosition, setTouchPosition] = useState(null);
 
     const [isShowingDots, setShowingDots] = useState(true);
