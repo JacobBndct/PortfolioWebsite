@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Gallery from './gallery.component';
+import GalleryNav from './gallery-nav.component';
 
 import '../CSS/gallery.css';
 
@@ -15,18 +16,7 @@ export default class Art extends Component {
                     </div>
                 </div>
 
-                <div className='filter-nav'>
-                    <div>
-                        <p>Tags</p>
-                    </div>
-                    <div>
-                        <p>Tools: Procreate, Krita, Maya</p>
-                    </div>
-                    <div>
-                        <p>Sort By</p>
-                    </div>
-                </div>
-
+                {/* <GalleryNav mediaType_id={'63cb182e227300bc8c4c4724'}></GalleryNav> */}
                 <Gallery mediaType_id={'63cb182e227300bc8c4c4724'}></Gallery>
             </div>
         );

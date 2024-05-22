@@ -23,7 +23,7 @@ export default class GalleryItem extends Component {
     render() {
         return (
             <div 
-                className='gallery-item-container shadow rounded box' 
+                className='gallery-item-container shadow rounded box gallery-item-animate' 
                 style={{background: this.state.background, transition: "background 150ms ease-in-out"}}
                 onMouseOver={this.handleMouseOver}
                 onMouseOut={this.handleMouseOut}
