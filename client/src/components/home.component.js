@@ -33,7 +33,7 @@ export default class Home extends Component {
     // Get info from database
     componentDidMount() {
         //featured media
-        Axios.get('https://jacobbndct.games/media/featured')
+        Axios.get('https://jacobbndct.ca/media/featured')
         .then(response => {
             this.setState({ featuredMedia: response.data });
         })
@@ -42,7 +42,7 @@ export default class Home extends Component {
         });
 
         //skills
-        // Axios.get('https://jacobbndct.games/skills/')
+        // Axios.get('https://jacobbndct.ca/skills/')
         // .then(response => {
         //     this.setState({ skills: response.data });
         // })

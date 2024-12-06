@@ -114,7 +114,7 @@ function Gallery({ mediaType_id }) {
   const endRef = useRef();
 
   const getMedia = (media_id, limit, offset) => {
-      Axios.get(`https://jacobbndct.games/media/type_${media_id}?limit=${limit}&offset=${offset}`)
+      Axios.get(`https://jacobbndct.ca/media/type_${media_id}?limit=${limit}&offset=${offset}`)
       .then((response) => {
         setMedia((prevMedia) => [...prevMedia, ...response.data]);
         setSkip((prevSkip) => prevSkip + limit);
@@ -125,7 +125,7 @@ function Gallery({ mediaType_id }) {
   };
 
   const getMediaCount = (media_id) => {
-    Axios.get(`https://jacobbndct.games/media/typeCount_${media_id}`)
+    Axios.get(`https://jacobbndct.ca/media/typeCount_${media_id}`)
       .then((response) => {
         setMediaCount(response.data);
       })

@@ -7,7 +7,7 @@ function CardColour(type) {
 
 async function getMediaCount(media_id) {
     try {
-        const response = await Axios.get(`https://jacobbndct.games/media/typeCount_${media_id}`);
+        const response = await Axios.get(`https://jacobbndct.ca/media/typeCount_${media_id}`);
         return response.data;
     } catch (err) {
         console.error('Error:', err);
