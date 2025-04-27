@@ -15,6 +15,8 @@ import TechnicalArt from './components/technical-art.component';
 import Programming from './components/programming.component';
 import ScrollToTop from './scroll-to-top';
 
+import Mobius from './components/mobius.component';
+
 function App() {
   return (
     <div className='page'>
@@ -29,6 +31,7 @@ function App() {
             <Route path='/Shaders' element={<Shaders />}/>
             <Route path='/Technical-Art' element={<TechnicalArt />}/>
             <Route path='/Programming' element={<Programming />}/>
+            <Route path='/Mobius' element={<Mobius />}/>
             <Route path='*' element={<PageNotFound />}/>
           </Route>
         </Routes>
