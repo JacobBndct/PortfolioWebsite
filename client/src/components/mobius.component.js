@@ -9,7 +9,9 @@ export default class Mobius extends Component {
                 <div className='dark-section'>
                     <h3>Mobius</h3>
                     <div className='normal-section'>
-                        <p>highlight in a CV between education and time</p>
+                        <p>Note to self: don't forget to store code someplace safe!</p>
+                        <p>Note to note to self: I've put the code </p> 
+                        <input>Code</input>
                     </div>
                 </div>
             </div>
