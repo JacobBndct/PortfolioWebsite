@@ -2,18 +2,27 @@ import React, { Component } from 'react';
 
 import '../CSS/gallery.css';
 
-function handleSubmit(e) {
-    e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
-
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
-}
 
 export default class Mobius extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          code: ''
+        };
+    }
+    
+    handleSubmit = (e) => {
+        e.preventDefault();
+    
+        const form = e.target;
+        const formData = new FormData(form);
+    
+        const formJson = Object.fromEntries(formData.entries());
+        console.log(formJson);
 
+        this.setState({code: formJson.code})
+    }
 
     render() {
         return (
@@ -23,11 +32,15 @@ export default class Mobius extends Component {
                     <div className='normal-section'>
                         <p>Note to self: don't forget to store code someplace safe!</p>
                         <p>Note to note to self: I've put the code </p>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={this.handleSubmit}>
                             <label>
                                 Code: <input name='code'></input>
                             </label>
                             <button type="submit">Enter</button>
+                            {
+                                this.state.code !== '' && this.state.code !== '--|-..|-.' &&
+                                <p>Your code is incorrect.</p>
+                            }
                         </form>
                     </div>
                 </div>
