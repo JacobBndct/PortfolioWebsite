@@ -5,3 +5,18 @@
 .correct {
     color: green;
 }
+
+.message-animate {
+    animation: fade-in 1s;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 100;
+        transform: translateY(0px);
+    }
+}
