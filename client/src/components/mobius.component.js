@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import '../CSS/gallery.css';
 
-
-
 export default class Mobius extends Component {
     constructor(props) {
         super(props);
@@ -40,6 +38,11 @@ export default class Mobius extends Component {
                             {
                                 this.state.code !== '' && this.state.code !== '--|-..|-.' &&
                                 <p>Your code is incorrect.</p>
+                            }
+                            {
+                                this.state.code !== '' && this.state.code == '--|-..|-.' &&
+                                <p>Your code is correct.</p> &&
+                                <img src='https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/OuterWilds.png'/>
                             }
                         </form>
                     </div>

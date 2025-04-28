@@ -45,7 +45,7 @@ const Banner = () => {
             <div className='banner-textbox'>
               <div className='banner-align'>
                 <h1 className='banner-h1'>Jacob Benedict</h1>
-                <h3 className='banner-h3'>Art - Games - Tech Art - Programming</h3>
+                <h3 className='banner-h3'>Art - Game Design - Tech Art - Programming</h3>
               </div>
             </div>
         </div>

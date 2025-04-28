@@ -62,7 +62,7 @@
     left: 0;
     top: 0;
     background-color: color-mix(in srgb, rgba(var(--art-colour), 0.4) 80%, black);
-    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/OuterWilds.png);
+    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/Killua.png);
 	-webkit-clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
     -moz-clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
@@ -72,7 +72,7 @@
     left: 17%;
     top: 0;
     background-color: color-mix(in srgb, rgba(var(--game-colour), 0.4) 80%, black);
-    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/WorldWide.png);
+    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/ImOnItPreview-min.jpg);
 	-webkit-clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
     -moz-clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
     clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
@@ -82,7 +82,7 @@
     left: 45%;
     top: 0;
     background-color: color-mix(in srgb, rgba(var(--shader-colour), 0.4) 80%, black);
-    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/DistanceTransform.png);
+    background-image: url(https://jb-portfolio-website.s3.ca-central-1.amazonaws.com/Dithering.png);
 	-webkit-clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
     -moz-clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
     clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
