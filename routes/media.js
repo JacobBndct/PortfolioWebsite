@@ -6,7 +6,19 @@ let Media = require('../models/media.model');
 
 // get all media route
 router.route('/').get((req, res) => {
+    var limit = 100;
+    var offset = 0;
+
+    if (req.query.limit) {
+        limit = req.query.limit;
+    }
+    if (req.query.offset) {
+        offset = req.query.offset;
+    }
+    
     Media.find()
+    .skip(offset)
+    .limit(limit)
     .populate('typeOfMedia_ids')
     .populate('tool_ids')
     .populate('skill_ids')  
