@@ -92,6 +92,7 @@ router.route('/id_:id').get((req, res) => {
 router.route('/add').post((req, res) => {
 
     let featured = req.body.featured;
+    let archived = req.body.archived;
     let weight = req.body.weight;
     let colour = req.body.colour;
 
@@ -110,6 +111,7 @@ router.route('/add').post((req, res) => {
 
     let newMedia = new Media({
         featured,
+        archived,
         weight,
         colour,
 
@@ -156,6 +158,7 @@ router.route('/update/:id').post((req, res) => {
     Media.findById(req.params.id)
     .then(media => {
         media.featured = req.body.featured;
+        media.archived = req.body.archived;
         media.weight = req.body.weight;
         media.colour = req.body.colour;
 
