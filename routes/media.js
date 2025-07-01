@@ -6,17 +6,20 @@ let Media = require('../models/media.model');
 
 // get all media route
 router.route('/').get((req, res) => {
-    var limit = 100;
-    var offset = 0;
+    // parse pagination params
+    const limit  = parseInt(req.query.limit,  10) || 100;
+    const offset = parseInt(req.query.offset, 10) ||   0;
 
-    if (req.query.limit) {
-        limit = req.query.limit;
-    }
-    if (req.query.offset) {
-        offset = req.query.offset;
+    // parse includeArchived; default to false
+    const includeArchived = req.query.includeArchived === 'true';
+
+    // build filter: if not including archived, filter them out
+    const filter = {};
+    if (!includeArchived) {
+        filter.archived = false;
     }
     
-    Media.find()
+    Media.find(filter)
     .skip(offset)
     .limit(limit)
     .populate('typeOfMedia_ids')
@@ -28,7 +31,22 @@ router.route('/').get((req, res) => {
 
 // get all featured media
 router.route('/featured').get((req, res) => {
-    Media.find({featured: true})
+    // parse pagination params
+    const limit  = parseInt(req.query.limit,  10) || 100;
+    const offset = parseInt(req.query.offset, 10) ||   0;
+
+    // parse includeArchived; default to false
+    const includeArchived = req.query.includeArchived === 'true';
+
+    // build filter: if not including archived, filter them out
+    const filter = {
+        featured: true
+    };
+    if (!includeArchived) {
+        filter.archived = false;
+    }
+
+    Media.find(filter)
     .populate('typeOfMedia_ids')
     .populate('tool_ids')
     .populate('skill_ids') 
@@ -44,17 +62,22 @@ router.route('/featured').get((req, res) => {
 
 // get all media for a type
 router.route('/type_:typeOfMedia').get((req, res) => {
-    var limit = 100;
-    var offset = 0;
+    // parse pagination params
+    const limit  = parseInt(req.query.limit,  10) || 100;
+    const offset = parseInt(req.query.offset, 10) ||   0;
 
-    if (req.query.limit) {
-        limit = req.query.limit;
-    }
-    if (req.query.offset) {
-        offset = req.query.offset;
+    // parse includeArchived; default to false
+    const includeArchived = req.query.includeArchived === 'true';
+
+    // build filter: if not including archived, filter them out
+    const filter = {
+        typeOfMedia_ids: req.params.typeOfMedia
+    };
+    if (!includeArchived) {
+        filter.archived = false;
     }
 
-    Media.find({typeOfMedia_ids: req.params.typeOfMedia})
+    Media.find(filter)
     .sort({dateOfCreation: -1})
     .skip(offset)
     .limit(limit)

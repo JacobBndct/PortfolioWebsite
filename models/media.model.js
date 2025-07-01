@@ -10,6 +10,7 @@ let breakdownSchema = new Schema({
 })
 
 let mediaSchema = new Schema({
+    archived: { type: Boolean, default: false},
     featured: { type: Boolean, default: false},
     weight: { type: Number },
     colour: { type: String },
