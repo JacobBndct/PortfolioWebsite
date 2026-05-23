@@ -1,0 +1,17 @@
+.DisplayModal {
+    height: 100%;
+    width: 100%;
+}
+
+.MediaDisplayImage {
+    width: 100%;
+}
+
+.MediaDisplayCarousel {
+    height: 50vh;
+    width: 50%;
+}
+
+.BreakdownItem {
+    margin: 10%;
+}

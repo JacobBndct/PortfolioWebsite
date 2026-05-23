@@ -1,5 +1,6 @@
 const path = require('path');
 
+const next = require('next');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -30,24 +31,20 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 });
 
-let mediaRouter = require('./routes/media');
-let disciplinesRouter = require('./routes/disciplines');
-let skillsRouter = require('./routes/skills');
-let toolsRouter = require('./routes/tools')
-let typeOfMediaRouter = require('./routes/typesOfMedia');
+const nextApp = next({ dev: false, dir: './client' });
+const handle = nextApp.getRequestHandler();
 
-app.use('/media', mediaRouter);
-app.use('/disciplines', disciplinesRouter);
-app.use('/skills', skillsRouter);
-app.use('/tools', toolsRouter);
-app.use('/typesOfMedia', typeOfMediaRouter);
+nextApp.prepare().then(() => {
 
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+  // --- Your API routes ---
+  app.use('/media', require('./routes/media'));
+  app.use('/disciplines', require('./routes/disciplines'));
+  app.use('/skills', require('./routes/skills'));
+  app.use('/tools', require('./routes/tools'));
+  app.use('/typesOfMedia', require('./routes/typesOfMedia'));
 
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-})
+  // --- Let Next.js handle everything else ---
+  app.all('*', (req, res) => handle(req, res));
 
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`)
+  app.listen(port, () => console.log(`Server running on ${port}`));
 });
