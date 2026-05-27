@@ -3,7 +3,7 @@
 * {
     /*main website colours*/
     --primary-colour: #ebf3ef;
-    --primary-colour-light: color-mix(in srgb, var(--primary-colour) 30%, white 70%);
+    --primary-colour-light: color-mix(in srgb, var(--primary-colour) 30%, rgb(255, 255, 255) 70%);
     --primary-colour-dark: color-mix(in srgb, var(--primary-colour) 90%, black 10%);
 
     --secondary-colour: #121212;

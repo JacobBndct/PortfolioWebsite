@@ -1,0 +1,133 @@
+.ocarinaButton {
+  padding: 10px 20px;
+  background: #4A90E2;
+  border: 2px solid #3549a5;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.ocarinaButton:hover {
+  box-shadow: 0 0 10px #4A90E2;
+}
+
+.notesDisplay {
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+  color: #F2D16B;
+  text-shadow: 0 0 6px #4A90E2;
+}
+
+.musicSheet {
+  position: relative;
+  width: 500px;
+  height: 120px;
+  margin: 20px auto;
+  background: rgba(27, 24, 24, 0.671);
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* LEFT ALIGN NOTES */
+  padding-left: 70px; /* space for clef */
+}
+
+.musicSheet::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  right: 10px;
+  height: 80px;
+
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #ff3b3b 5px,
+    #00000000 10px,   /* thinner line */
+    transparent 28px
+  );
+
+  pointer-events: none;
+}
+
+.musicSheet::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  width: 50px;
+  height: 100px;
+  background-image: url('/images/mobius/Clef.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+@keyframes noteFadeIn {
+  0% { opacity: 0; transform: scale(0.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes noteFlash {
+  0%, 100% { filter: brightness(0.5); }
+  20% { filter: brightness(5); }
+  40% { filter: brightness(0.5); }
+  60% { filter: brightness(5); }
+  80% { filter: brightness(0.5); }
+}
+
+.flashCorrect {
+  animation: noteFlash 0.6s ease-out;
+}
+
+.note {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 6px;
+  animation: noteFadeIn 0.25s ease-out;
+}
+
+.note.up {
+  top: -20px;
+  background-image: url('/images/mobius/UpButton.svg');
+}
+
+.note.left {
+  top: -10px;
+  background-image: url('/images/mobius/RightButton.svg');
+  transform: scaleX(-1);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.note.right {
+  background-image: url('/images/mobius/RightButton.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.note.down {
+  top: 10px;
+  background-image: url('/images/mobius/DownButton.svg');
+}
+
+.note.a {
+  top: 20px;
+  background-image: url('/images/mobius/AButton.svg');
+  width: 32px;
+  height: 32px;
+}
+
+.nothing {
+  margin-top: 10px;
+  text-align: center;
+  color: #ff6b6b;
+  font-size: 1.2rem;
+  text-shadow: 0 0 6px black;
+}
+

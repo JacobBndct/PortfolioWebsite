@@ -1,3 +1,10 @@
+.ocarinaBox {
+  padding: 20px;
+  border-radius: 10px;
+
+  box-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
+
 .incorrect {
     color: red;
 }
@@ -8,6 +15,10 @@
 
 .message-animate {
     animation: fade-in 1s;
+}
+
+.fan-art {
+    width: 100%;
 }
 
 @keyframes fade-in {

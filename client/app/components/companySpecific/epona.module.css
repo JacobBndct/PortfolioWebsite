@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.left,
+.right {
+  flex: 1;  
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.debugger {
+  flex-shrink: 0;
+}
+
+.enclosure {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  border: 4px solid #3b3626; /* Triforce gold */
+  border-radius: 12px;
+
+  background: radial-gradient(circle at center, #2e382e, #4a503e);
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.dot {
+  width: 56px;
+  height: 56px;
+  background-image: url('/images/mobius/EponaModel.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+}
