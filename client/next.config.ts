@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -11,7 +12,7 @@ const nextConfig: NextConfig = {
     ],
   },
   turbopack: {
-    root: "C:\\Users\\jacob\\Documents\\GitHub\\PortfolioWebsite",
+    root: path.resolve(__dirname),
   },
 };
 
