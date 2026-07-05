@@ -129,6 +129,7 @@ function generateGalleryItems(mediaData: Media[]): ReactNode[] {
 // -------------------- Gallery Component --------------------
 
 export default function Gallery({ mediaType_id }: GalleryProps) {
+  const [mediaMaxCount, setMediaMaxCount] = useState(0);
   const [media, setMedia] = useState<Media[]>([]);
   const [mediaLock, setMediaLock] = useState(false);
   const [skip, setSkip] = useState(0);
@@ -147,14 +148,29 @@ export default function Gallery({ mediaType_id }: GalleryProps) {
     }
   };
 
+  const getMediaCount = async (media_id: string) => {
+    try  {
+      const response = await axios.get<number>(
+        `https://jacobbndct.ca/media/typeCount_${media_id}`
+      );
+      setMediaMaxCount(response.data);
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  }
+
   useEffect(() => {
     if (!endRef.current) return;
 
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      if (entry.isIntersecting && !mediaLock) {
+      
+      getMediaCount(mediaType_id);
+      console.log(mediaMaxCount);
+
+      if (skip < mediaMaxCount && entry.isIntersecting && !mediaLock) {
         setMediaLock(true);
-        getMedia(mediaType_id, 1, skip).finally(() =>
+        getMedia(mediaType_id, 3, skip).finally(() =>
           setMediaLock(false)
         );
       }

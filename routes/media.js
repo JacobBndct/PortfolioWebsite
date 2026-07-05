@@ -88,12 +88,28 @@ router.route('/type_:typeOfMedia').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/typeCount_:typeOfMedia').get((req, res) => {
-    Media.count({typeOfMedia_ids: req.params.typeOfMedia}, function(err, count){
-        console.log( "Number of users:", count );
-        res.json(count.toString());
-    })
+router.get('/typeCount/:typeOfMedia', async (req, res) => {
+    try {
+        const includeArchived = req.query.includeArchived === 'true';
+
+        const filter = {
+            typeOfMedia_ids: req.params.typeOfMedia
+        };
+
+        if (!includeArchived) {
+            filter.archived = false;
+        }
+
+        const count = await Media.countDocuments(filter);
+
+        console.log("Number of media:", count);
+        res.json({ count });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error' });
+    }
 });
+
 
 // get media by id route
 router.route('/id_:id').get((req, res) => {
