@@ -15,15 +15,12 @@ interface GalleryProps {
   mediaType_id: string;
 }
 
-// -------------------- Dynamic SVG Icon Loader --------------------
-
 type IconProps = React.ImgHTMLAttributes<HTMLImageElement> & {
   name: string;
 };
 
 export function Icon({ name, ...rest }: IconProps) {
   if (!name) return null;
-
   return <img src={`/images/mediaTypes/${name}.svg`} {...rest} />;
 }
 
@@ -31,7 +28,6 @@ export function Icon({ name, ...rest }: IconProps) {
 
 function findMediaTypeHelper(breakdowns: Breakdown[] | undefined): string[] {
   if (!breakdowns) return [];
-
   const types: string[] = [];
 
   for (const breakdown of breakdowns) {
@@ -46,7 +42,11 @@ function findMediaTypeHelper(breakdowns: Breakdown[] | undefined): string[] {
 function findMediaType(breakdowns: Breakdown[] | undefined): ReactNode[] {
   const base = (
     <div className={`${styles["gallery-item-media-box"]} rounded`} key="base">
-      <img className={`${styles["filter-white"]} ${styles["gallery-item-media-image"]}`} src="/images/mediaTypes/image.svg" alt="tool" />
+      <img
+        className={`${styles["filter-white"]} ${styles["gallery-item-media-image"]}`}
+        src="/images/mediaTypes/image.svg"
+        alt="tool"
+      />
     </div>
   );
 
@@ -86,7 +86,7 @@ function sortMedia(items: ReactNode[]): ReactNode[][] {
 
 function generateGalleryItems(mediaData: Media[]): ReactNode[] {
   if (!mediaData || mediaData.length === 0) {
-    console.log("gallery empty");
+    console.log("[Gallery] No media to generate items from");
     return [];
   }
 
@@ -97,7 +97,6 @@ function generateGalleryItems(mediaData: Media[]): ReactNode[] {
       media.typeOfMedia_ids.name.slice(1);
 
     const toolName = media.tool_ids[0]?.name ?? null;
-
     if (!toolName) return;
 
     const mediaToolIcons = (
@@ -129,6 +128,8 @@ function generateGalleryItems(mediaData: Media[]): ReactNode[] {
 // -------------------- Gallery Component --------------------
 
 export default function Gallery({ mediaType_id }: GalleryProps) {
+  console.log("[Render] Gallery render start");
+
   const [mediaMaxCount, setMediaMaxCount] = useState(0);
   const [media, setMedia] = useState<Media[]>([]);
   const [mediaLock, setMediaLock] = useState(false);
@@ -136,72 +137,151 @@ export default function Gallery({ mediaType_id }: GalleryProps) {
 
   const endRef = useRef<HTMLDivElement | null>(null);
 
+  // Live refs for observer
+  const skipRef = useRef(skip);
+  const lockRef = useRef(mediaLock);
+  const countRef = useRef(mediaMaxCount);
+
+  useEffect(() => {
+    skipRef.current = skip;
+    console.log("[Ref Sync] skipRef updated:", skipRef.current);
+  }, [skip]);
+
+  useEffect(() => {
+    lockRef.current = mediaLock;
+    console.log("[Ref Sync] lockRef updated:", lockRef.current);
+  }, [mediaLock]);
+
+  useEffect(() => {
+    countRef.current = mediaMaxCount;
+    console.log("[Ref Sync] countRef updated:", countRef.current);
+  }, [mediaMaxCount]);
+
   const getMedia = async (media_id: string, limit: number, offset: number) => {
+    console.log(`[API] Requesting media: id=${media_id}, limit=${limit}, offset=${offset}`);
+
     try {
       const response = await axios.get<Media[]>(
         `https://jacobbndct.ca/media/type_${media_id}?limit=${limit}&offset=${offset}`
       );
+
+      console.log("[API] Media response:", response.data);
+
       setMedia((prev) => [...prev, ...response.data]);
       setSkip((prev) => prev + limit);
+
+      console.log("[State] New skip:", skipRef.current + limit);
     } catch (err) {
-      console.error("Error:", err);
+      console.error("[API ERROR] getMedia failed:", err);
     }
   };
 
   const getMediaCount = async (media_id: string) => {
-    try  {
-      const response = await axios.get<number>(
-        `https://jacobbndct.ca/media/typeCount_${media_id}`
+    console.log(`[API] Requesting media count for: ${media_id}`);
+
+    try {
+      const response = await axios.get<{ count: number }>(
+        `https://jacobbndct.ca/media/typeCount/${media_id}`
       );
-      setMediaMaxCount(response.data);
+
+      console.log("[API] Count response:", response.data);
+      console.log("[Fix] Using count:", response.data.count);
+
+      setMediaMaxCount(response.data.count);
     } catch (err) {
-      console.error("Error:", err);
+      console.error("[API ERROR] getMediaCount failed:", err);
     }
-  }
+  };
+
+  // Load count once
+  useEffect(() => {
+    console.log("[Effect] mediaType_id changed → resetting gallery");
+    setMedia([]);
+    setSkip(0);
+    getMediaCount(mediaType_id);
+  }, [mediaType_id]);
 
   useEffect(() => {
     if (!endRef.current) return;
 
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      
-      getMediaCount(mediaType_id);
-      console.log(mediaMaxCount);
+    console.log("[Effect] mediaMaxCount changed → forcing observer check");
 
-      if (skip < mediaMaxCount && entry.isIntersecting && !mediaLock) {
-        setMediaLock(true);
-        getMedia(mediaType_id, 3, skip).finally(() =>
-          setMediaLock(false)
-        );
+    const rect = endRef.current.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom >= 0;
+
+    if (inView) {
+      console.log("[Effect] Sentinel visible → triggering load");
+
+      if (!lockRef.current && skipRef.current < countRef.current) {
+        lockRef.current = true;
+
+        getMedia(mediaType_id, 3, skipRef.current).finally(() => {
+          lockRef.current = false;
+          console.log("[Effect] Forced load finished");
+        });
+      }
+    }
+  }, [mediaMaxCount]);
+
+  // Create observer once
+  useEffect(() => {
+    if (!endRef.current) {
+      console.log("[Observer] endRef not ready");
+      return;
+    }
+
+    console.log("[Observer] Creating observer");
+
+    const observer = new IntersectionObserver(([entry]) => {
+      console.log("[Observer] Entry:", entry.isIntersecting);
+      console.log("[Observer] Current values:", {
+        skip: skipRef.current,
+        max: countRef.current,
+        lock: lockRef.current,
+      });
+
+      if (
+        entry.isIntersecting &&
+        !lockRef.current &&
+        skipRef.current < countRef.current
+      ) {
+        console.log("[Observer] Conditions met → loading media");
+
+        lockRef.current = true;
+
+        getMedia(mediaType_id, 3, skipRef.current).finally(() => {
+          lockRef.current = false;
+          console.log("[Observer] Media load finished → lock released");
+        });
+      } else {
+        console.log("[Observer] Conditions NOT met → no load");
       }
     });
 
     observer.observe(endRef.current);
 
-    return () => observer.disconnect();
-  }, [mediaType_id, skip, mediaLock]);
+    return () => {
+      console.log("[Observer] Disconnecting observer");
+      observer.disconnect();
+    };
+  }, [mediaType_id]);
 
   const items = generateGalleryItems(media);
   const sortedItems = sortMedia(items);
 
+  console.log("[Render] Media count:", media.length);
+  console.log("[Render] Max count:", mediaMaxCount);
+  console.log("[Render] Skip:", skip);
+
   return (
     <div className={styles["wide-section"]}>
       <div className={styles["gallery-row"]}>
-        <div className={styles["gallery-col"]}>
-          {sortedItems[0]}
-          <div ref={endRef} />
-        </div>
-
-        <div className={styles["gallery-col"]}>
-          {sortedItems[1]}
-          <div ref={endRef} />
-        </div>
-
-        <div className={styles["gallery-col"]}>
-          {sortedItems[2]}
-          <div ref={endRef} />
-        </div>
+        <div className={styles["gallery-col"]}>{sortedItems[0]}</div>
+        <div className={styles["gallery-col"]}>{sortedItems[1]}</div>
+        <div className={styles["gallery-col"]}>{sortedItems[2]}</div>
       </div>
+
+      <div ref={endRef} style={{ height: "20px" }} />
     </div>
   );
 }

@@ -90,15 +90,9 @@ router.route('/type_:typeOfMedia').get((req, res) => {
 
 router.get('/typeCount/:typeOfMedia', async (req, res) => {
     try {
-        const includeArchived = req.query.includeArchived === 'true';
-
         const filter = {
             typeOfMedia_ids: req.params.typeOfMedia
         };
-
-        if (!includeArchived) {
-            filter.archived = false;
-        }
 
         const count = await Media.countDocuments(filter);
 
