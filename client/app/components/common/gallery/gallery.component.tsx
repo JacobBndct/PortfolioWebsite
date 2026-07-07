@@ -97,14 +97,9 @@ function generateGalleryItems(mediaData: Media[]): ReactNode[] {
       media.typeOfMedia_ids.name.slice(1);
 
     const toolName = media.tool_ids[0]?.name ?? null;
-    if (!toolName) return;
-
-    const mediaToolIcons = (
-      <Icon
-        className={`${styles["gallery-item-logo"]} ${styles["filter-white"]}`}
-        name={toolName}
-      />
-    );
+    const mediaToolIcons = toolName ? (
+      <Icon className={`${styles["gallery-item-logo"]} ${styles["filter-white"]}`} name={toolName} />
+    ) : null;
 
     const mediaBreakdownIcons = findMediaType(media.breakdowns);
 
@@ -143,11 +138,6 @@ export default function Gallery({ mediaType_id }: GalleryProps) {
   const countRef = useRef(mediaMaxCount);
 
   useEffect(() => {
-    skipRef.current = skip;
-    console.log("[Ref Sync] skipRef updated:", skipRef.current);
-  }, [skip]);
-
-  useEffect(() => {
     lockRef.current = mediaLock;
     console.log("[Ref Sync] lockRef updated:", lockRef.current);
   }, [mediaLock]);
@@ -168,7 +158,11 @@ export default function Gallery({ mediaType_id }: GalleryProps) {
       console.log("[API] Media response:", response.data);
 
       setMedia((prev) => [...prev, ...response.data]);
-      setSkip((prev) => prev + limit);
+      setSkip((prev) => {
+        const newSkip = prev + limit;
+        skipRef.current = newSkip ;
+        return newSkip;
+      });
 
       console.log("[State] New skip:", skipRef.current + limit);
     } catch (err) {
